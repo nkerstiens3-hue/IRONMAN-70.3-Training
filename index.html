@@ -15,62 +15,55 @@
   --bg:#0a0f1e;--surface:#131c30;--surface2:#1a2540;--border:rgba(255,255,255,0.08);
   --text:#f0f4ff;--muted:#6a7a9a;--accent:#4FC3F7;--accent2:#81D4FA;
   --nick:#4FC3F7;--chase:#F472B6;
-  --run:#4CAF50;--bike:#4FC3F7;--swim:#9575CD;--brick:#FF9800;
   --safe-top:env(safe-area-inset-top,0px);--safe-bot:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;}
 #app{display:flex;flex-direction:column;height:100%;padding-top:var(--safe-top);}
-
-/* HEADER */
 .hdr{padding:12px 16px 10px;background:var(--bg);border-bottom:0.5px solid var(--border);flex-shrink:0;}
 .hdr-row{display:flex;justify-content:space-between;align-items:center;}
 .hdr-title{font-size:18px;font-weight:700;letter-spacing:-0.3px;}
 .hdr-sub{font-size:11px;color:var(--muted);margin-top:1px;}
 .race-chip{background:var(--surface2);border:0.5px solid var(--accent);border-radius:20px;padding:3px 9px;font-size:11px;color:var(--accent);font-weight:600;white-space:nowrap;}
-
-/* ATHLETE SWITCHER */
-.athlete-bar{display:flex;gap:0;background:var(--surface);border-bottom:0.5px solid var(--border);flex-shrink:0;}
+.sync-bar{display:flex;align-items:center;justify-content:space-between;padding:5px 16px;background:var(--surface);border-bottom:0.5px solid var(--border);flex-shrink:0;}
+.sync-status{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px;}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);}
+.sync-dot.ok{background:#4CAF50;}
+.sync-dot.syncing{background:#FF9800;animation:pulse 1s infinite;}
+.sync-dot.err{background:#E24B4A;}
+.sync-btn{font-size:10px;color:var(--accent);background:none;border:none;cursor:pointer;padding:2px 6px;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.athlete-bar{display:flex;background:var(--surface);border-bottom:0.5px solid var(--border);flex-shrink:0;}
 .ath-btn{flex:1;padding:9px 4px;text-align:center;border:none;background:none;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;-webkit-appearance:none;}
 .ath-btn.nick.active{color:var(--nick);border-bottom-color:var(--nick);}
 .ath-btn.chase.active{color:var(--chase);border-bottom-color:var(--chase);}
-
-/* PROG STRIP */
+.ath-btn.both.active{color:var(--accent);border-bottom-color:var(--accent);}
 .prog-strip{height:2px;background:var(--surface2);flex-shrink:0;}
 .prog-fill{height:100%;transition:width .6s;}
 .prog-fill.nick{background:linear-gradient(90deg,var(--nick),var(--accent2));}
 .prog-fill.chase{background:linear-gradient(90deg,var(--chase),#f9a8d4);}
-
-/* TABS */
 .tabs{display:flex;background:var(--surface);border-bottom:0.5px solid var(--border);flex-shrink:0;}
 .tab{flex:1;padding:9px 2px 7px;text-align:center;cursor:pointer;font-size:9px;color:var(--muted);font-weight:500;border:none;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;-webkit-appearance:none;}
 .tab .ti{font-size:17px;}
 .tab.active{color:var(--accent);}
 .tab-line{display:none;width:16px;height:2px;background:var(--accent);border-radius:2px;margin:1px auto 0;}
 .tab.active .tab-line{display:block;}
-
-/* CONTENT */
 .content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(16px + var(--safe-bot));}
 .section{display:none;padding-top:4px;}
 .section.active{display:block;}
-
-/* CARDS */
 .card{background:var(--surface);border:0.5px solid var(--border);border-radius:16px;padding:14px 16px;margin:10px 14px;}
 .clabel{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
-
-/* TODAY HERO */
 .hero{margin:10px 14px;background:var(--surface);border:0.5px solid var(--border);border-radius:20px;overflow:hidden;}
 .hero-phase{padding:9px 16px 0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
 .hero-phase.nick{color:var(--nick);}
 .hero-phase.chase{color:var(--chase);}
+.hero-phase.both{color:var(--accent);}
 .hero-body{padding:11px 16px 15px;}
 .hero-top{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
 .hero-emoji{font-size:30px;}
 .hero-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;}
 .hero-text{font-size:14px;font-weight:500;line-height:1.45;color:var(--text);margin-bottom:5px;}
 .hero-extra{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:11px;padding:7px 10px;background:var(--surface2);border-radius:8px;}
-
-/* LOG BUTTONS — dual athlete */
 .log-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .log-btn{width:100%;padding:11px 6px;border-radius:11px;border:none;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;-webkit-appearance:none;display:flex;flex-direction:column;align-items:center;gap:2px;}
 .log-btn .btn-name{font-size:10px;opacity:.7;font-weight:500;}
@@ -78,21 +71,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .log-btn.nick-on{background:#0d2a3a;color:var(--nick);border:0.5px solid var(--nick);}
 .log-btn.chase-on{background:#2d1225;color:var(--chase);border:0.5px solid var(--chase);}
 .log-btn:active{transform:scale(.96);}
-
-/* METRICS */
 .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 14px 10px;}
 .metric{background:var(--surface);border:0.5px solid var(--border);border-radius:13px;padding:11px 8px;text-align:center;}
 .metric-val{font-size:19px;font-weight:700;line-height:1;}
 .metric-lbl{font-size:9px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.04em;}
-
-/* WEEK NAV */
 .wnav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 2px;}
 .wnav-mid{text-align:center;}
 .wnav-title{font-size:14px;font-weight:600;}
 .wnav-sub{font-size:11px;color:var(--muted);margin-top:1px;}
 .narr{background:var(--surface);border:0.5px solid var(--border);border-radius:9px;width:36px;height:36px;font-size:18px;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-appearance:none;}
-
-/* WEEK ROWS */
 .wrows{margin:6px 14px 0;background:var(--surface);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;}
 .wrow{display:flex;align-items:flex-start;gap:8px;padding:10px 14px;border-bottom:0.5px solid var(--border);}
 .wrow:last-child{border-bottom:none;}
@@ -101,16 +88,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .wicon{font-size:15px;flex-shrink:0;padding-top:1px;}
 .wtext{font-size:12px;flex:1;line-height:1.4;color:var(--text);}
 .wlog-pair{display:flex;flex-direction:column;gap:3px;flex-shrink:0;}
-.wlog{background:none;border:0.5px solid var(--border);border-radius:6px;min-width:28px;height:22px;font-size:10px;font-weight:700;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;-webkit-appearance:none;padding:0 5px;white-space:nowrap;}
+.wlog{background:none;border:0.5px solid var(--border);border-radius:6px;min-width:30px;height:22px;font-size:10px;font-weight:700;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;-webkit-appearance:none;padding:0 5px;white-space:nowrap;}
 .wlog.nick-on{background:#0d2a3a;border-color:var(--nick);color:var(--nick);}
 .wlog.chase-on{background:#2d1225;border-color:var(--chase);color:var(--chase);}
-
-/* STATS TAB */
 .stat-tabs{display:flex;gap:5px;margin:0 14px 10px;background:var(--surface);border-radius:10px;padding:4px;}
 .stat-btn{flex:1;padding:7px;border-radius:7px;border:none;font-size:11px;font-weight:500;cursor:pointer;background:transparent;color:var(--muted);-webkit-appearance:none;transition:all .15s;}
 .stat-btn.active{background:var(--surface2);color:var(--text);}
-
-/* MILEAGE BARS */
 .mile-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .mile-label{font-size:12px;font-weight:500;min-width:40px;}
 .mile-bars{flex:1;}
@@ -119,20 +102,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .mile-bar-fill{height:100%;border-radius:4px;transition:width .5s;}
 .mile-bar-val{font-size:10px;color:var(--muted);min-width:40px;text-align:right;}
 .mile-name{font-size:9px;color:var(--muted);min-width:36px;}
-
-/* PROGRESS BARS */
 .pbar{margin-bottom:12px;}
 .pbar-hd{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
 .pbar-bg{background:var(--surface2);border-radius:5px;height:6px;overflow:hidden;}
 .pbar-fill{height:100%;border-radius:5px;transition:width .5s;}
 .pbar-wks{font-size:10px;color:var(--muted);margin-top:2px;}
-
-/* MODAL OVERLAY */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:flex-end;justify-content:center;padding-bottom:var(--safe-bot);}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
 .modal-overlay.hidden{display:none;}
 .modal{background:var(--surface);border-radius:20px 20px 0 0;padding:20px 20px calc(20px + var(--safe-bot));width:100%;max-width:480px;border-top:0.5px solid var(--border);}
 .modal-title{font-size:16px;font-weight:700;margin-bottom:4px;}
-.modal-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
+.modal-sub{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.4;}
 .form-row{margin-bottom:14px;}
 .form-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block;}
 .form-input{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:10px;padding:11px 13px;font-size:15px;color:var(--text);-webkit-appearance:none;outline:none;}
@@ -141,11 +120,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;}
 .modal-btn{padding:13px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;-webkit-appearance:none;}
 .modal-btn.cancel{background:var(--surface2);color:var(--muted);}
-.modal-btn.submit{color:#fff;}
-.modal-btn.submit.nick{background:linear-gradient(135deg,#1a6b9a,var(--nick));}
+.modal-btn.submit.nicholas{background:linear-gradient(135deg,#1a6b9a,var(--nick));}
 .modal-btn.submit.chase{background:linear-gradient(135deg,#9d174d,var(--chase));}
-
-/* ZONE ROWS */
+.modal-btn.submit{color:#fff;}
 .zrow{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:0.5px solid var(--border);}
 .zrow:last-child{border-bottom:none;}
 .zdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
@@ -153,24 +130,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .zname{font-size:11px;font-weight:600;min-width:85px;}
 .zpct{font-size:10px;color:var(--muted);min-width:48px;}
 .zdesc{font-size:10px;color:var(--muted);line-height:1.4;}
-
-/* BADGE COLORS */
 .b-Run{background:rgba(76,175,80,.15);color:#81C784;}
 .b-Bike{background:rgba(79,195,247,.15);color:#4FC3F7;}
 .b-Swim{background:rgba(149,117,205,.15);color:#CE93D8;}
 .b-Brick{background:rgba(255,152,0,.15);color:#FFB74D;}
 .b-Rest{background:rgba(69,80,96,.3);color:#78909C;}
 .b-Recovery{background:rgba(240,98,146,.15);color:#F48FB1;}
-
 .note-row{font-size:11px;color:#FFD54F;line-height:1.5;margin:2px 14px 4px;}
 .quote{font-size:12px;color:var(--muted);font-style:italic;text-align:center;line-height:1.6;}
 .duo-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 14px 10px;}
 .duo-card{background:var(--surface);border:0.5px solid var(--border);border-radius:13px;padding:12px;text-align:center;}
 .duo-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
-.duo-name.nick{color:var(--nick);}
+.duo-name.nicholas{color:var(--nick);}
 .duo-name.chase{color:var(--chase);}
 .duo-val{font-size:22px;font-weight:700;}
 .duo-lbl{font-size:9px;color:var(--muted);margin-top:2px;text-transform:uppercase;}
+.toast{position:fixed;bottom:calc(20px + var(--safe-bot));left:50%;transform:translateX(-50%);background:#1e3a1e;color:#4CAF50;border:0.5px solid #4CAF50;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:600;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;}
+.toast.show{opacity:1;}
 </style>
 </head>
 <body>
@@ -182,10 +158,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
   </div>
 
+  <div class="sync-bar">
+    <div class="sync-status">
+      <div class="sync-dot" id="sync-dot"></div>
+      <span id="sync-label">Loading...</span>
+    </div>
+    <button class="sync-btn" onclick="syncNow()">↻ Sync</button>
+  </div>
+
   <div class="athlete-bar">
     <button class="ath-btn nick active" onclick="switchAthlete('nicholas')">Nicholas</button>
     <button class="ath-btn chase" onclick="switchAthlete('chase')">Chase</button>
-    <button class="ath-btn" onclick="switchAthlete('both')" style="color:var(--muted);">Both</button>
+    <button class="ath-btn both" onclick="switchAthlete('both')">Both</button>
   </div>
 
   <div class="prog-strip"><div class="prog-fill nick" id="prog-fill" style="width:0%"></div></div>
@@ -199,7 +183,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   </div>
 
   <div class="content">
-    <div id="tab-today" class="section active"></div>
+    <div id="tab-today" class="section active"><div style="padding:40px;text-align:center;color:var(--muted);">Loading...</div></div>
     <div id="tab-week" class="section"></div>
     <div id="tab-stats" class="section"></div>
     <div id="tab-progress" class="section"></div>
@@ -207,9 +191,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   </div>
 </div>
 
-<!-- LOG WORKOUT MODAL -->
 <div class="modal-overlay hidden" id="modal-overlay" onclick="closeModalOutside(event)">
-  <div class="modal" id="modal">
+  <div class="modal">
     <div class="modal-title" id="modal-title"></div>
     <div class="modal-sub" id="modal-sub"></div>
     <div class="form-row">
@@ -223,7 +206,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
       <div class="form-row">
         <label class="form-label">Avg heart rate</label>
-        <input class="form-input" id="inp-hr" type="number" placeholder="e.g. 148">
+        <input class="form-input" id="inp-hr" type="number" placeholder="148">
       </div>
     </div>
     <div class="form-row">
@@ -232,67 +215,72 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
     <div class="modal-btns">
       <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
-      <button class="modal-btn submit" id="modal-submit" onclick="submitLog()">Save</button>
+      <button class="modal-btn submit" id="modal-submit" onclick="submitLog()">Save workout</button>
     </div>
   </div>
 </div>
 
+<div class="toast" id="toast"></div>
+
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────
+// ── JSONBIN CONFIG ─────────────────────────────────────────────────────────
+const JSONBIN_KEY = '$2a$10$SUxvQUi9s.Q8quTv2poRc.pEpT9nx9BeXO9FzC9yngkwNQ/Zt7V9e';
+const JSONBIN_URL = 'https://api.jsonbin.io/v3/b';
+let BIN_ID = localStorage.getItem('703_bin_id') || null;
+
+// ── PLAN DATA ──────────────────────────────────────────────────────────────
 const PLAN_START = new Date('2026-06-22T00:00:00');
 const RACE_DAY   = new Date('2027-05-08T00:00:00');
 const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-const ATHLETES = ['nicholas','chase'];
-const ATH_COLOR = {nicholas:'var(--nick)',chase:'var(--chase)'};
 const ATH_LABEL = {nicholas:'Nicholas',chase:'Chase'};
 
 const PLAN = [
-{w:1,d:'Mon',t:'Run',x:'RUN 3 mi | Z2 | Easy & conversational',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:1,d:'Tue',t:'Rest',x:'REST / Active Recovery'},{w:1,d:'Wed',t:'Bike',x:'BIKE 12 mi | Z2 | Easy spin, cadence 85–90rpm',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, SL-RDL, Row, Rot.Cuff, Dead Bug'},{w:1,d:'Thu',t:'Rest',x:'REST / Active Recovery'},{w:1,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Negative split'},{w:1,d:'Sat',t:'Bike',x:'BIKE 12 mi | Z2 | First ride',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, SL-RDL, Row, Rot.Cuff, Dead Bug'},{w:1,d:'Sun',t:'Rest',x:'REST',note:'Plyo + run Mon. Strength Wed & Sat before bike.'},
-{w:2,d:'Mon',t:'Run',x:'RUN 3 mi | Z2'},{w:2,d:'Tue',t:'Rest',x:'REST / Active Recovery'},{w:2,d:'Wed',t:'Bike',x:'BIKE 14 mi | Z2 | Hold 85–90 rpm',str:'Stabilization 3×12'},{w:2,d:'Thu',t:'Rest',x:'REST / Active Recovery'},{w:2,d:'Fri',t:'Run',x:'RUN 3 mi | Z2'},{w:2,d:'Sat',t:'Bike',x:'BIKE 14 mi | Z2 | Easy aerobic'},{w:2,d:'Sun',t:'Rest',x:'REST'},
-{w:3,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:3,d:'Tue',t:'Rest',x:'REST / Active Recovery'},{w:3,d:'Wed',t:'Bike',x:'BIKE 15 mi | Z2 | Smooth pedal stroke',str:'Stabilization 3×12'},{w:3,d:'Thu',t:'Rest',x:'REST / Active Recovery'},{w:3,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Last mile Z3'},{w:3,d:'Sat',t:'Bike',x:'BIKE 15 mi | Z2',str:'Stabilization 3×12'},{w:3,d:'Sun',t:'Rest',x:'REST'},
-{w:4,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Very easy',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:4,d:'Tue',t:'Rest',x:'REST'},{w:4,d:'Wed',t:'Recovery',x:'BIKE 10 mi | Z1 | Easy spin'},{w:4,d:'Thu',t:'Rest',x:'REST'},{w:4,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:4,d:'Sat',t:'Recovery',x:'BIKE 10 mi | Z1 | Easy spin'},{w:4,d:'Sun',t:'Rest',x:'REST'},
+{w:1,d:'Mon',t:'Run',x:'RUN 3 mi | Z2 | Easy & conversational',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:1,d:'Tue',t:'Rest',x:'REST / Active Recovery'},{w:1,d:'Wed',t:'Bike',x:'BIKE 12 mi | Z2 | Easy spin, cadence 85–90rpm',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, SL-RDL, Row, Rot.Cuff, Dead Bug'},{w:1,d:'Thu',t:'Rest',x:'REST / Active Recovery'},{w:1,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Negative split'},{w:1,d:'Sat',t:'Bike',x:'BIKE 12 mi | Z2 | First ride',str:'Stabilization 3×12'},{w:1,d:'Sun',t:'Rest',x:'REST',note:'Plyo + run Mon. Strength Wed & Sat.'},
+{w:2,d:'Mon',t:'Run',x:'RUN 3 mi | Z2'},{w:2,d:'Tue',t:'Rest',x:'REST'},{w:2,d:'Wed',t:'Bike',x:'BIKE 14 mi | Z2 | Hold 85–90 rpm',str:'Stabilization 3×12'},{w:2,d:'Thu',t:'Rest',x:'REST'},{w:2,d:'Fri',t:'Run',x:'RUN 3 mi | Z2'},{w:2,d:'Sat',t:'Bike',x:'BIKE 14 mi | Z2 | Easy aerobic'},{w:2,d:'Sun',t:'Rest',x:'REST'},
+{w:3,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:3,d:'Tue',t:'Rest',x:'REST'},{w:3,d:'Wed',t:'Bike',x:'BIKE 15 mi | Z2 | Smooth pedal stroke',str:'Stabilization 3×12'},{w:3,d:'Thu',t:'Rest',x:'REST'},{w:3,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Last mile Z3'},{w:3,d:'Sat',t:'Bike',x:'BIKE 15 mi | Z2',str:'Stabilization 3×12'},{w:3,d:'Sun',t:'Rest',x:'REST'},
+{w:4,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Very easy',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:4,d:'Tue',t:'Rest',x:'REST'},{w:4,d:'Wed',t:'Recovery',x:'BIKE 10 mi | Z1 | Easy spin'},{w:4,d:'Thu',t:'Rest',x:'REST'},{w:4,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:4,d:'Sat',t:'Recovery',x:'BIKE 10 mi | Z1'},{w:4,d:'Sun',t:'Rest',x:'REST'},
 {w:5,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:5,d:'Tue',t:'Rest',x:'REST'},{w:5,d:'Wed',t:'Bike',x:'BIKE 16 mi | Z2',str:'Stabilization 3×12'},{w:5,d:'Thu',t:'Rest',x:'REST'},{w:5,d:'Fri',t:'Run',x:'RUN 4 mi | Z2'},{w:5,d:'Sat',t:'Bike',x:'BIKE 16 mi | Z2',str:'Stabilization 3×12'},{w:5,d:'Sun',t:'Rest',x:'REST'},
-{w:6,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:6,d:'Tue',t:'Rest',x:'REST'},{w:6,d:'Wed',t:'Bike',x:'BIKE 18 mi | Z2 | Build to 90 min in saddle',str:'Stabilization 3×12'},{w:6,d:'Thu',t:'Rest',x:'REST'},{w:6,d:'Fri',t:'Run',x:'RUN 5 mi | Z2/Z3 | 3×1 mi at Z3'},{w:6,d:'Sat',t:'Bike',x:'BIKE 18 mi | Z2',str:'Stabilization 3×12'},{w:6,d:'Sun',t:'Rest',x:'REST'},
+{w:6,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:6,d:'Tue',t:'Rest',x:'REST'},{w:6,d:'Wed',t:'Bike',x:'BIKE 18 mi | Z2 | Build to 90 min',str:'Stabilization 3×12'},{w:6,d:'Thu',t:'Rest',x:'REST'},{w:6,d:'Fri',t:'Run',x:'RUN 5 mi | Z2/Z3 | 3×1 mi at Z3'},{w:6,d:'Sat',t:'Bike',x:'BIKE 18 mi | Z2',str:'Stabilization 3×12'},{w:6,d:'Sun',t:'Rest',x:'REST'},
 {w:7,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:7,d:'Tue',t:'Rest',x:'REST'},{w:7,d:'Wed',t:'Bike',x:'BIKE 19 mi | Z2',str:'Stabilization 3×12'},{w:7,d:'Thu',t:'Rest',x:'REST'},{w:7,d:'Fri',t:'Run',x:'RUN 5 mi | Z2 | Miles 3–5 at Z3'},{w:7,d:'Sat',t:'Bike',x:'BIKE 19 mi | Z2',str:'Stabilization 3×12'},{w:7,d:'Sun',t:'Rest',x:'REST'},
-{w:8,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:8,d:'Tue',t:'Rest',x:'REST'},{w:8,d:'Wed',t:'Recovery',x:'BIKE 12 mi | Z1 | Easy spin'},{w:8,d:'Thu',t:'Rest',x:'REST'},{w:8,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:8,d:'Sat',t:'Recovery',x:'BIKE 12 mi | Z1'},{w:8,d:'Sun',t:'Rest',x:'REST'},
-{w:9,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run',note:'End of Phase 1 — aerobic + strength base built.'},{w:9,d:'Tue',t:'Rest',x:'REST'},{w:9,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Longest ride yet',str:'Stabilization 3×12'},{w:9,d:'Thu',t:'Rest',x:'REST'},{w:9,d:'Fri',t:'Run',x:'RUN 6 mi | Z2 | 4×1 mi at Z3'},{w:9,d:'Sat',t:'Bike',x:'BIKE 20 mi | Z2',str:'Stabilization 3×12'},{w:9,d:'Sun',t:'Rest',x:'REST'},
-{w:10,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'Ankle hops + 3×8 jump squats + 3×10 bounds before run',note:'Phase 2: Max strength. Sat = long run, strength before.'},{w:10,d:'Tue',t:'Rest',x:'REST'},{w:10,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Cadence drills',str:'Max Strength 4×6 — Squat, RDL, Split Squat, Lat Pull, Shoulder Press, Rot.Cuff'},{w:10,d:'Thu',t:'Rest',x:'REST'},{w:10,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:10,d:'Sat',t:'Run',x:'RUN 10 mi | Z2 | Long run',str:'Max Strength 4×6'},{w:10,d:'Sun',t:'Rest',x:'REST'},
+{w:8,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:8,d:'Tue',t:'Rest',x:'REST'},{w:8,d:'Wed',t:'Recovery',x:'BIKE 12 mi | Z1 | Easy spin'},{w:8,d:'Thu',t:'Rest',x:'REST'},{w:8,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:8,d:'Sat',t:'Recovery',x:'BIKE 12 mi | Z1'},{w:8,d:'Sun',t:'Rest',x:'REST'},
+{w:9,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run',note:'End of Phase 1.'},{w:9,d:'Tue',t:'Rest',x:'REST'},{w:9,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Longest ride yet',str:'Stabilization 3×12'},{w:9,d:'Thu',t:'Rest',x:'REST'},{w:9,d:'Fri',t:'Run',x:'RUN 6 mi | Z2 | 4×1 mi at Z3'},{w:9,d:'Sat',t:'Bike',x:'BIKE 20 mi | Z2',str:'Stabilization 3×12'},{w:9,d:'Sun',t:'Rest',x:'REST'},
+{w:10,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'Ankle hops + 3×8 jump squats + 3×10 bounds before run',note:'Phase 2: Max strength begins.'},{w:10,d:'Tue',t:'Rest',x:'REST'},{w:10,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Cadence drills',str:'Max Strength 4×6 — Squat, RDL, Split Squat, Lat Pull, Shoulder Press, Rot.Cuff'},{w:10,d:'Thu',t:'Rest',x:'REST'},{w:10,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:10,d:'Sat',t:'Run',x:'RUN 10 mi | Z2 | Long run',str:'Max Strength 4×6'},{w:10,d:'Sun',t:'Rest',x:'REST'},
 {w:11,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run'},{w:11,d:'Tue',t:'Rest',x:'REST'},{w:11,d:'Wed',t:'Bike',x:'BIKE 22 mi | Z2 | Hold 85–90 rpm',str:'Max Strength 4×6'},{w:11,d:'Thu',t:'Rest',x:'REST'},{w:11,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:11,d:'Sat',t:'Run',x:'RUN 11 mi | Z2 | Long run',str:'Max Strength 4×6'},{w:11,d:'Sun',t:'Rest',x:'REST'},
 {w:12,d:'Mon',t:'Run',x:'RUN 6 mi | Z2/Z3 | Last 2 mi Z3',plyo:'Ankle hops + jump squats + bounds before run'},{w:12,d:'Tue',t:'Rest',x:'REST'},{w:12,d:'Wed',t:'Bike',x:'BIKE 24 mi | Z2 | 2×5 mi at Z3',str:'Max Strength 4×6'},{w:12,d:'Thu',t:'Rest',x:'REST'},{w:12,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:12,d:'Sat',t:'Run',x:'RUN 11 mi | Z2 | Long run',str:'Max Strength 4×6'},{w:12,d:'Sun',t:'Rest',x:'REST'},
-{w:13,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:13,d:'Tue',t:'Rest',x:'REST'},{w:13,d:'Wed',t:'Recovery',x:'BIKE 16 mi | Z1 | Easy cutback'},{w:13,d:'Thu',t:'Rest',x:'REST'},{w:13,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:13,d:'Sat',t:'Recovery',x:'RUN 8 mi | Z1/Z2 | Cutback'},{w:13,d:'Sun',t:'Rest',x:'REST'},
-{w:14,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run',note:'★ First brick!'},{w:14,d:'Tue',t:'Rest',x:'REST'},{w:14,d:'Wed',t:'Bike',x:'BIKE 25 mi | Z2',str:'Max Strength 4×6'},{w:14,d:'Thu',t:'Rest',x:'REST'},{w:14,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:14,d:'Sat',t:'Brick',x:'BRICK: BIKE 20 mi Z2 → RUN 2 mi Z2 | First brick! Note heavy-legs feeling',str:'Max Strength 4×6'},{w:14,d:'Sun',t:'Rest',x:'REST'},
+{w:13,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:13,d:'Tue',t:'Rest',x:'REST'},{w:13,d:'Wed',t:'Recovery',x:'BIKE 16 mi | Z1'},{w:13,d:'Thu',t:'Rest',x:'REST'},{w:13,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:13,d:'Sat',t:'Recovery',x:'RUN 8 mi | Z1/Z2 | Cutback'},{w:13,d:'Sun',t:'Rest',x:'REST'},
+{w:14,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run',note:'★ First brick!'},{w:14,d:'Tue',t:'Rest',x:'REST'},{w:14,d:'Wed',t:'Bike',x:'BIKE 25 mi | Z2',str:'Max Strength 4×6'},{w:14,d:'Thu',t:'Rest',x:'REST'},{w:14,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:14,d:'Sat',t:'Brick',x:'BRICK: BIKE 20 mi Z2 → RUN 2 mi Z2 | First brick!',str:'Max Strength 4×6'},{w:14,d:'Sun',t:'Rest',x:'REST'},
 {w:15,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run'},{w:15,d:'Tue',t:'Rest',x:'REST'},{w:15,d:'Wed',t:'Bike',x:'BIKE 26 mi | Z2 | 2×6 mi at Z3',str:'Max Strength 4×6'},{w:15,d:'Thu',t:'Rest',x:'REST'},{w:15,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:15,d:'Sat',t:'Run',x:'RUN 12 mi | Z2 | Long run',str:'Max Strength 4×6'},{w:15,d:'Sun',t:'Rest',x:'REST'},
 {w:16,d:'Mon',t:'Run',x:'RUN 6 mi | Z2/Z3',plyo:'Ankle hops + jump squats + bounds before run'},{w:16,d:'Tue',t:'Rest',x:'REST'},{w:16,d:'Wed',t:'Bike',x:'BIKE 28 mi | Z2/Z3 | Build last 8 mi to Z3',str:'Max Strength 4×6'},{w:16,d:'Thu',t:'Rest',x:'REST'},{w:16,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:16,d:'Sat',t:'Brick',x:'BRICK: BIKE 22 mi Z2 → RUN 3 mi Z2',str:'Max Strength 4×6'},{w:16,d:'Sun',t:'Rest',x:'REST'},
-{w:17,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:17,d:'Tue',t:'Rest',x:'REST'},{w:17,d:'Wed',t:'Recovery',x:'BIKE 18 mi | Z1 | Easy cutback'},{w:17,d:'Thu',t:'Rest',x:'REST'},{w:17,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:17,d:'Sat',t:'Recovery',x:'RUN 9 mi | Z1/Z2 | Cutback'},{w:17,d:'Sun',t:'Rest',x:'REST'},
+{w:17,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:17,d:'Tue',t:'Rest',x:'REST'},{w:17,d:'Wed',t:'Recovery',x:'BIKE 18 mi | Z1'},{w:17,d:'Thu',t:'Rest',x:'REST'},{w:17,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:17,d:'Sat',t:'Recovery',x:'RUN 9 mi | Z1/Z2 | Cutback'},{w:17,d:'Sun',t:'Rest',x:'REST'},
 {w:18,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run'},{w:18,d:'Tue',t:'Rest',x:'REST'},{w:18,d:'Wed',t:'Bike',x:'BIKE 30 mi | Z2 | Longest ride yet',str:'Max Strength 4×6'},{w:18,d:'Thu',t:'Rest',x:'REST'},{w:18,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:18,d:'Sat',t:'Brick',x:'BRICK: BIKE 24 mi Z2 → RUN 3 mi Z2',str:'Max Strength 4×6'},{w:18,d:'Sun',t:'Rest',x:'REST'},
-{w:19,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run',note:'Last 4-day week. Thu activates next phase.'},{w:19,d:'Tue',t:'Rest',x:'REST'},{w:19,d:'Wed',t:'Bike',x:'BIKE 32 mi | Z2 | Negative split',str:'Max Strength 4×6'},{w:19,d:'Thu',t:'Rest',x:'REST'},{w:19,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:19,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Longest long run so far',str:'Max Strength 4×6'},{w:19,d:'Sun',t:'Rest',x:'REST'},
-{w:20,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 split lunge jumps + 3×8 SL hops + 3×20 high skips before run',note:'★ Thu activates as 5th day. Plyo 2×/wk Mon+Thu.'},{w:20,d:'Tue',t:'Swim',x:'SWIM 400m | Easy — breathe & feel the water'},{w:20,d:'Wed',t:'Bike',x:'BIKE 30 mi | Z2',str:'Max Strength 4×5 — Squat, RDL, Split Squat, Pull-Up, Shoulder Press, Rot.Cuff'},{w:20,d:'Thu',t:'Run',x:'RUN 5 mi | Z2 | Thu activates!',str:'Max Strength 4×5',plyo:'3×10 split lunge jumps + 3×8 SL hops + 3×20 high skips before run'},{w:20,d:'Fri',t:'Rest',x:'REST'},{w:20,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Long run'},{w:20,d:'Sun',t:'Rest',x:'REST'},
+{w:19,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'Ankle hops + jump squats + bounds before run',note:'Last 4-day week.'},{w:19,d:'Tue',t:'Rest',x:'REST'},{w:19,d:'Wed',t:'Bike',x:'BIKE 32 mi | Z2 | Negative split',str:'Max Strength 4×6'},{w:19,d:'Thu',t:'Rest',x:'REST'},{w:19,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:19,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Longest long run so far',str:'Max Strength 4×6'},{w:19,d:'Sun',t:'Rest',x:'REST'},
+{w:20,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 split lunge jumps + 3×8 SL hops + 3×20 high skips before run',note:'★ Thu activates as 5th day.'},{w:20,d:'Tue',t:'Swim',x:'SWIM 400m | Easy — breathe & feel the water'},{w:20,d:'Wed',t:'Bike',x:'BIKE 30 mi | Z2',str:'Max Strength 4×5 — Squat, RDL, Split Squat, Pull-Up, Shoulder Press, Rot.Cuff'},{w:20,d:'Thu',t:'Run',x:'RUN 5 mi | Z2 | Thu activates!',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:20,d:'Fri',t:'Rest',x:'REST'},{w:20,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Long run'},{w:20,d:'Sun',t:'Rest',x:'REST'},
 {w:21,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:21,d:'Tue',t:'Swim',x:'SWIM 500m | Z2 | Breathe every 3 strokes'},{w:21,d:'Wed',t:'Bike',x:'BIKE 31 mi | Z2',str:'Max Strength 4×5'},{w:21,d:'Thu',t:'Run',x:'RUN 5 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:21,d:'Fri',t:'Rest',x:'REST'},{w:21,d:'Sat',t:'Run',x:'RUN 14 mi | Z2 | Long run'},{w:21,d:'Sun',t:'Rest',x:'REST'},
 {w:22,d:'Mon',t:'Run',x:'RUN 7 mi | Z2/Z3 | Last 2 mi Z3',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:22,d:'Tue',t:'Swim',x:'SWIM 600m | Z2 | Sighting every 10 strokes'},{w:22,d:'Wed',t:'Bike',x:'BIKE 32 mi | Z2',str:'Max Strength 4×5'},{w:22,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:22,d:'Fri',t:'Rest',x:'REST'},{w:22,d:'Sat',t:'Brick',x:'BRICK: BIKE 25 mi Z2 → RUN 3 mi Z2'},{w:22,d:'Sun',t:'Rest',x:'REST'},
-{w:23,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:23,d:'Tue',t:'Recovery',x:'SWIM 400m | Z1 | Easy'},{w:23,d:'Wed',t:'Recovery',x:'BIKE 22 mi | Z1 | Cutback'},{w:23,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},{w:23,d:'Fri',t:'Rest',x:'REST'},{w:23,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},{w:23,d:'Sun',t:'Rest',x:'REST'},
+{w:23,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:23,d:'Tue',t:'Recovery',x:'SWIM 400m | Z1 | Easy'},{w:23,d:'Wed',t:'Recovery',x:'BIKE 22 mi | Z1 | Cutback'},{w:23,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},{w:23,d:'Fri',t:'Rest',x:'REST'},{w:23,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},{w:23,d:'Sun',t:'Rest',x:'REST'},
 {w:24,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:24,d:'Tue',t:'Swim',x:'SWIM 700m | Z2 | 4×100m + 300m easy'},{w:24,d:'Wed',t:'Bike',x:'BIKE 34 mi | Z2',str:'Max Strength 4×5'},{w:24,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:24,d:'Fri',t:'Rest',x:'REST'},{w:24,d:'Sat',t:'Run',x:'RUN 14 mi | Z2 | Long run'},{w:24,d:'Sun',t:'Rest',x:'REST'},
 {w:25,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:25,d:'Tue',t:'Swim',x:'SWIM 800m | Z2 | 2×300m + 200m easy'},{w:25,d:'Wed',t:'Bike',x:'BIKE 35 mi | Z2 | 2×8 mi at Z3',str:'Max Strength 4×5'},{w:25,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:25,d:'Fri',t:'Rest',x:'REST'},{w:25,d:'Sat',t:'Brick',x:'BRICK: BIKE 28 mi Z2 → RUN 3 mi Z2'},{w:25,d:'Sun',t:'Rest',x:'REST'},
-{w:26,d:'Mon',t:'Run',x:'RUN 8 mi | Z2/Z3',plyo:'Split lunge jumps + SL hops + high skips before run',note:'★ 15-mile long run milestone'},{w:26,d:'Tue',t:'Swim',x:'SWIM 900m | Z2 | Build to continuous 400m sets'},{w:26,d:'Wed',t:'Bike',x:'BIKE 36 mi | Z2',str:'Max Strength 4×5'},{w:26,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:26,d:'Fri',t:'Rest',x:'REST'},{w:26,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:26,d:'Sun',t:'Rest',x:'REST'},
-{w:27,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:27,d:'Tue',t:'Recovery',x:'SWIM 600m | Z1 | Easy'},{w:27,d:'Wed',t:'Recovery',x:'BIKE 24 mi | Z1 | Cutback'},{w:27,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},{w:27,d:'Fri',t:'Rest',x:'REST'},{w:27,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},{w:27,d:'Sun',t:'Rest',x:'REST'},
+{w:26,d:'Mon',t:'Run',x:'RUN 8 mi | Z2/Z3',plyo:'Split lunge jumps + SL hops + high skips before run',note:'★ 15-mile long run milestone'},{w:26,d:'Tue',t:'Swim',x:'SWIM 900m | Z2 | Continuous 400m sets'},{w:26,d:'Wed',t:'Bike',x:'BIKE 36 mi | Z2',str:'Max Strength 4×5'},{w:26,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:26,d:'Fri',t:'Rest',x:'REST'},{w:26,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:26,d:'Sun',t:'Rest',x:'REST'},
+{w:27,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:27,d:'Tue',t:'Recovery',x:'SWIM 600m | Z1 | Easy'},{w:27,d:'Wed',t:'Recovery',x:'BIKE 24 mi | Z1 | Cutback'},{w:27,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},{w:27,d:'Fri',t:'Rest',x:'REST'},{w:27,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},{w:27,d:'Sun',t:'Rest',x:'REST'},
 {w:28,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'Split lunge jumps + SL hops + high skips before run',note:'★ 1000m swim milestone'},{w:28,d:'Tue',t:'Swim',x:'SWIM 1000m | Z2 | MILESTONE — 2×400m + 200m'},{w:28,d:'Wed',t:'Bike',x:'BIKE 38 mi | Z2 | Steady aerobic',str:'Max Strength 4×5'},{w:28,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:28,d:'Fri',t:'Rest',x:'REST'},{w:28,d:'Sat',t:'Brick',x:'BRICK: BIKE 30 mi Z2 → RUN 4 mi Z2'},{w:28,d:'Sun',t:'Rest',x:'REST'},
 {w:29,d:'Mon',t:'Run',x:'RUN 9 mi | Z2',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:29,d:'Tue',t:'Swim',x:'SWIM 1100m | Z2 | 3×300m + 200m easy'},{w:29,d:'Wed',t:'Bike',x:'BIKE 40 mi | Z2',str:'Max Strength 4×5'},{w:29,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:29,d:'Fri',t:'Rest',x:'REST'},{w:29,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:29,d:'Sun',t:'Rest',x:'REST'},
 {w:30,d:'Mon',t:'Run',x:'RUN 9 mi | Z2 | Last 2 mi Z3',plyo:'Split lunge jumps + SL hops + high skips before run',note:'Last Full Tri Base week.'},{w:30,d:'Tue',t:'Swim',x:'SWIM 1200m | Z2 | 2×500m + 200m cool-down'},{w:30,d:'Wed',t:'Bike',x:'BIKE 42 mi | Z2 | Negative split',str:'Max Strength 4×5'},{w:30,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',str:'Max Strength 4×5',plyo:'Split lunge jumps + SL hops + high skips before run'},{w:30,d:'Fri',t:'Rest',x:'REST'},{w:30,d:'Sat',t:'Brick',x:'BRICK: BIKE 32 mi Z2 → RUN 4 mi Z2'},{w:30,d:'Sun',t:'Rest',x:'REST'},
-{w:31,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3×12 lunge jumps + 3×10 lateral hops + 3×8 depth step-offs + skips before run',note:'Build: strength → maintenance. Heavy but brief.'},{w:31,d:'Tue',t:'Swim',x:'SWIM 1300m | Z2 | 3×400m'},{w:31,d:'Wed',t:'Bike',x:'BIKE 42 mi | Z2/Z3 | Last 10 mi Z3',str:'Maintenance 3×5 — Squat, RDL, Row, Hip Thrust, Rot.Cuff (heavy, brief)'},{w:31,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:31,d:'Fri',t:'Rest',x:'REST'},{w:31,d:'Sat',t:'Brick',x:'BRICK: BIKE 34 mi Z3 → RUN 4 mi Z2'},{w:31,d:'Sun',t:'Rest',x:'REST'},
+{w:31,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3×12 lunge jumps + 3×10 lateral hops + 3×8 depth step-offs + skips before run',note:'Build: strength → maintenance.'},{w:31,d:'Tue',t:'Swim',x:'SWIM 1300m | Z2 | 3×400m'},{w:31,d:'Wed',t:'Bike',x:'BIKE 42 mi | Z2/Z3 | Last 10 mi Z3',str:'Maintenance 3×5 — Squat, RDL, Row, Hip Thrust, Rot.Cuff'},{w:31,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:31,d:'Fri',t:'Rest',x:'REST'},{w:31,d:'Sat',t:'Brick',x:'BRICK: BIKE 34 mi Z3 → RUN 4 mi Z2'},{w:31,d:'Sun',t:'Rest',x:'REST'},
 {w:32,d:'Mon',t:'Run',x:'RUN 9 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 16-mile long run milestone'},{w:32,d:'Tue',t:'Swim',x:'SWIM 1400m | Z2/Z3 | 4×300m at Z3'},{w:32,d:'Wed',t:'Bike',x:'BIKE 44 mi | Z2 | Steady aerobic',str:'Maintenance 3×5'},{w:32,d:'Thu',t:'Run',x:'RUN 8 mi | Z2/Z3 | 3×1 mi Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:32,d:'Fri',t:'Rest',x:'REST'},{w:32,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Long run'},{w:32,d:'Sun',t:'Rest',x:'REST'},
-{w:33,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 1500m swim — race distance!'},{w:33,d:'Tue',t:'Swim',x:'SWIM 1500m | Z2 | MILESTONE — 2×700m or continuous'},{w:33,d:'Wed',t:'Bike',x:'BIKE 45 mi | Z2/Z3 | 2×10 mi Z3',str:'Maintenance 3×5'},{w:33,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:33,d:'Fri',t:'Rest',x:'REST'},{w:33,d:'Sat',t:'Brick',x:'BRICK: BIKE 36 mi Z3 → RUN 5 mi Z2'},{w:33,d:'Sun',t:'Rest',x:'REST'},
-{w:34,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:34,d:'Tue',t:'Recovery',x:'SWIM 900m | Z1 | Easy'},{w:34,d:'Wed',t:'Recovery',x:'BIKE 28 mi | Z1 | Cutback'},{w:34,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:34,d:'Fri',t:'Rest',x:'REST'},{w:34,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:34,d:'Sun',t:'Rest',x:'REST'},
+{w:33,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 1500m swim — race distance!'},{w:33,d:'Tue',t:'Swim',x:'SWIM 1500m | Z2 | MILESTONE — race distance'},{w:33,d:'Wed',t:'Bike',x:'BIKE 45 mi | Z2/Z3 | 2×10 mi Z3',str:'Maintenance 3×5'},{w:33,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:33,d:'Fri',t:'Rest',x:'REST'},{w:33,d:'Sat',t:'Brick',x:'BRICK: BIKE 36 mi Z3 → RUN 5 mi Z2'},{w:33,d:'Sun',t:'Rest',x:'REST'},
+{w:34,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:34,d:'Tue',t:'Recovery',x:'SWIM 900m | Z1 | Easy'},{w:34,d:'Wed',t:'Recovery',x:'BIKE 28 mi | Z1 | Cutback'},{w:34,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:34,d:'Fri',t:'Rest',x:'REST'},{w:34,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:34,d:'Sun',t:'Rest',x:'REST'},
 {w:35,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | Last 3 mi Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:35,d:'Tue',t:'Swim',x:'SWIM 1600m | Z2/Z3 | 4×350m Z3'},{w:35,d:'Wed',t:'Bike',x:'BIKE 46 mi | Z2/Z3 | Last 12 mi Z3',str:'Maintenance 3×5'},{w:35,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:35,d:'Fri',t:'Rest',x:'REST'},{w:35,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Long run'},{w:35,d:'Sun',t:'Rest',x:'REST'},
 {w:36,d:'Mon',t:'Run',x:'RUN 10 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:36,d:'Tue',t:'Swim',x:'SWIM 1700m | Z2 | 3×500m + 200m'},{w:36,d:'Wed',t:'Bike',x:'BIKE 48 mi | Z2/Z3',str:'Maintenance 3×5'},{w:36,d:'Thu',t:'Run',x:'RUN 8 mi | Z2/Z3 | 4×1 mi Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:36,d:'Fri',t:'Rest',x:'REST'},{w:36,d:'Sat',t:'Brick',x:'BRICK: BIKE 38 mi Z3 → RUN 5 mi Z2'},{w:36,d:'Sun',t:'Rest',x:'REST'},
-{w:37,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:37,d:'Tue',t:'Swim',x:'SWIM 1800m | Z2/Z3 | 2×800m Z3 + 200m easy'},{w:37,d:'Wed',t:'Bike',x:'BIKE 49 mi | Z3 | Tempo — sustained race effort',str:'Maintenance 3×5'},{w:37,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:37,d:'Fri',t:'Rest',x:'REST'},{w:37,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:37,d:'Sun',t:'Rest',x:'REST'},
-{w:38,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:38,d:'Tue',t:'Recovery',x:'SWIM 1000m | Z1 | Easy'},{w:38,d:'Wed',t:'Recovery',x:'BIKE 30 mi | Z1 | Cutback'},{w:38,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:38,d:'Fri',t:'Rest',x:'REST'},{w:38,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:38,d:'Sun',t:'Rest',x:'REST'},
-{w:39,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | 4×1 mi Z4 threshold',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 50-mile ride milestone'},{w:39,d:'Tue',t:'Swim',x:'SWIM 1900m | Z2/Z3 | 4×400m Z3 + 300m easy'},{w:39,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z2/Z3 | Longest ride yet — controlled',str:'Maintenance 3×5'},{w:39,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:39,d:'Fri',t:'Rest',x:'REST'},{w:39,d:'Sat',t:'Brick',x:'BRICK: BIKE 42 mi Z3 → RUN 5 mi Z2 | Race-pace effort'},{w:39,d:'Sun',t:'Rest',x:'REST'},
+{w:37,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:37,d:'Tue',t:'Swim',x:'SWIM 1800m | Z2/Z3 | 2×800m Z3 + 200m easy'},{w:37,d:'Wed',t:'Bike',x:'BIKE 49 mi | Z3 | Tempo — race effort',str:'Maintenance 3×5'},{w:37,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:37,d:'Fri',t:'Rest',x:'REST'},{w:37,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:37,d:'Sun',t:'Rest',x:'REST'},
+{w:38,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:38,d:'Tue',t:'Recovery',x:'SWIM 1000m | Z1 | Easy'},{w:38,d:'Wed',t:'Recovery',x:'BIKE 30 mi | Z1 | Cutback'},{w:38,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:38,d:'Fri',t:'Rest',x:'REST'},{w:38,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:38,d:'Sun',t:'Rest',x:'REST'},
+{w:39,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | 4×1 mi Z4 threshold',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 50-mile ride milestone'},{w:39,d:'Tue',t:'Swim',x:'SWIM 1900m | Z2/Z3 | 4×400m Z3 + 300m easy'},{w:39,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z2/Z3 | Longest ride yet',str:'Maintenance 3×5'},{w:39,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:39,d:'Fri',t:'Rest',x:'REST'},{w:39,d:'Sat',t:'Brick',x:'BRICK: BIKE 42 mi Z3 → RUN 5 mi Z2 | Race-pace'},{w:39,d:'Sun',t:'Rest',x:'REST'},
 {w:40,d:'Mon',t:'Run',x:'RUN 11 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ Last 16-mi long run. Last build week.'},{w:40,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2 | 2×900m + 200m cool-down'},{w:40,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z3 | 2×12 mi Z3',str:'Maintenance 3×5'},{w:40,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:40,d:'Fri',t:'Rest',x:'REST'},{w:40,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Final peak long run'},{w:40,d:'Sun',t:'Rest',x:'REST'},
-{w:41,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'Peak: strength Wed only — brief & heavy.'},{w:41,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2/Z3 | 4×400m Z3'},{w:41,d:'Wed',t:'Bike',x:'BIKE 52 mi | Z2/Z3',str:'Maintenance 2–3×5 — Squat, RDL, Pull-Up, Rot.Cuff (keep it short)'},{w:41,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:41,d:'Fri',t:'Rest',x:'REST'},{w:41,d:'Sat',t:'Brick',x:'BRICK: BIKE 44 mi Z3 → RUN 6 mi Z3 | Key race-sim'},{w:41,d:'Sun',t:'Rest',x:'REST'},
+{w:41,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'Peak: strength Wed only.'},{w:41,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2/Z3 | 4×400m Z3'},{w:41,d:'Wed',t:'Bike',x:'BIKE 52 mi | Z2/Z3',str:'Maintenance 2–3×5 — Squat, RDL, Pull-Up, Rot.Cuff'},{w:41,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:41,d:'Fri',t:'Rest',x:'REST'},{w:41,d:'Sat',t:'Brick',x:'BRICK: BIKE 44 mi Z3 → RUN 6 mi Z3 | Key race-sim'},{w:41,d:'Sun',t:'Rest',x:'REST'},
 {w:42,d:'Mon',t:'Run',x:'RUN 10 mi | Z3 | Race-pace effort',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 2100m swim — beyond race distance'},{w:42,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2 | 3×600m — beyond race distance!'},{w:42,d:'Wed',t:'Bike',x:'BIKE 54 mi | Z2/Z3 | Negative split',str:'Maintenance 2–3×5'},{w:42,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:42,d:'Fri',t:'Rest',x:'REST'},{w:42,d:'Sat',t:'Brick',x:'BRICK: BIKE 45 mi Z3 → RUN 6 mi Z3'},{w:42,d:'Sun',t:'Rest',x:'REST'},
 {w:43,d:'Mon',t:'Run',x:'RUN 11 mi | Z2/Z3',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'★ 55-mile peak ride. Hardest week.'},{w:43,d:'Tue',t:'Swim',x:'SWIM 2000m | Z3 | Race simulation'},{w:43,d:'Wed',t:'Bike',x:'BIKE 55 mi | Z3 | Longest ride — race effort',str:'Maintenance 2–3×5'},{w:43,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run'},{w:43,d:'Fri',t:'Rest',x:'REST'},{w:43,d:'Sat',t:'Brick',x:'BRICK: BIKE 46 mi Z3 → RUN 6 mi Z3 | Full race-sim'},{w:43,d:'Sun',t:'Rest',x:'REST'},
-{w:44,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:44,d:'Tue',t:'Recovery',x:'SWIM 1200m | Z1 | Easy'},{w:44,d:'Wed',t:'Recovery',x:'BIKE 32 mi | Z1 | Cutback'},{w:44,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:44,d:'Fri',t:'Rest',x:'REST'},{w:44,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:44,d:'Sun',t:'Rest',x:'REST'},
+{w:44,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:44,d:'Tue',t:'Recovery',x:'SWIM 1200m | Z1 | Easy'},{w:44,d:'Wed',t:'Recovery',x:'BIKE 32 mi | Z1 | Cutback'},{w:44,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:44,d:'Fri',t:'Rest',x:'REST'},{w:44,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:44,d:'Sun',t:'Rest',x:'REST'},
 {w:45,d:'Mon',t:'Run',x:'RUN 10 mi | Z3 | Final hard run — race pace',plyo:'Lunge jumps + lateral hops + depth step-offs + skips before run',note:'Last hard week. Taper starts next.'},{w:45,d:'Tue',t:'Swim',x:'SWIM 1900m | Z3 | Full race-distance simulation'},{w:45,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z3 | Final long ride',str:'Maintenance 2–3×5'},{w:45,d:'Thu',t:'Run',x:'RUN 6 mi | Z2'},{w:45,d:'Fri',t:'Rest',x:'REST'},{w:45,d:'Sat',t:'Brick',x:'BRICK: BIKE 40 mi Z3 → RUN 5 mi Z3 | Final race-pace brick'},{w:45,d:'Sun',t:'Rest',x:'REST'},
-{w:46,d:'Mon',t:'Run',x:'RUN 4 mi | Z2 | Easy shake-out',note:'🏁 RACE: Sat May 8, 2027. NO strength. NO plyos. Fresh legs only.'},{w:46,d:'Tue',t:'Swim',x:'SWIM 1000m | Z2 | Easy'},{w:46,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Easy spin'},{w:46,d:'Thu',t:'Run',x:'RUN 3 mi | Z1 | Short & easy'},{w:46,d:'Fri',t:'Rest',x:'REST'},{w:46,d:'Sat',t:'Run',x:'RUN 3 mi | Z1 | Final shakeout — RACE DAY TOMORROW!'},{w:46,d:'Sun',t:'Rest',x:'REST'},
+{w:46,d:'Mon',t:'Run',x:'RUN 4 mi | Z2 | Easy shake-out',note:'🏁 RACE: Sat May 8, 2027. NO strength. NO plyos.'},{w:46,d:'Tue',t:'Swim',x:'SWIM 1000m | Z2 | Easy'},{w:46,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Easy spin'},{w:46,d:'Thu',t:'Run',x:'RUN 3 mi | Z1 | Short & easy'},{w:46,d:'Fri',t:'Rest',x:'REST'},{w:46,d:'Sat',t:'Run',x:'RUN 3 mi | Z1 | Final shakeout — RACE DAY TOMORROW!'},{w:46,d:'Sun',t:'Rest',x:'REST'},
 ];
 
 const PHASES=[
@@ -303,17 +291,17 @@ const PHASES=[
   {num:5,name:'Peak',s:41,e:45},
   {num:6,name:'Taper',s:46,e:46},
 ];
-
 const EMOJI={Run:'🏃',Bike:'🚴',Swim:'🏊',Brick:'⚡',Rest:'😴',Recovery:'💙'};
 
 // ── STATE ──────────────────────────────────────────────────────────────────
-let athlete='nicholas'; // 'nicholas' | 'chase' | 'both'
+let athlete='nicholas';
 let activeTab='today';
 let viewWeek=1;
 let statSubTab='alltime';
-// logged[athlete][wk_day] = {distance, pace, hr, notes, ts}
 let logged={nicholas:{},chase:{}};
-let pendingLog=null; // {athlete, wk, day, wo}
+let pendingLog=null;
+let syncTimer=null;
+let lastSyncTime=null;
 
 function getPhase(wk){return PHASES.find(p=>wk>=p.s&&wk<=p.e)||PHASES[0];}
 function getWO(wk,day){return PLAN.find(p=>p.w===wk&&p.d===day)||{t:'Rest',x:'REST'};}
@@ -326,26 +314,107 @@ function todayInfo(){
   const dow=t.getDay();
   return{wk:Math.max(wk,1),day:DAYS[dow===0?6:dow-1],date:t};
 }
-
 const TI=todayInfo();
-const todayWk=TI.wk, todayDay=TI.day, todayDate=TI.date;
+const todayWk=TI.wk,todayDay=TI.day,todayDate=TI.date;
 viewWeek=todayWk;
 
 function daysLeft(){const t=new Date();t.setHours(0,0,0,0);return Math.ceil((RACE_DAY-t)/86400000);}
 
-function loadData(){
-  try{const s=localStorage.getItem('703v3_data');if(s)logged=JSON.parse(s);}
-  catch(e){logged={nicholas:{},chase:{}};}
+// ── JSONBIN SYNC ───────────────────────────────────────────────────────────
+function setSyncStatus(state,msg){
+  const dot=document.getElementById('sync-dot');
+  const lbl=document.getElementById('sync-label');
+  dot.className='sync-dot '+state;
+  lbl.textContent=msg;
+}
+
+async function createBin(){
+  try {
+    const r=await fetch(JSONBIN_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Name':'703-tracker','X-Bin-Private':'false'},
+      body:JSON.stringify({nicholas:{},chase:{}})
+    });
+    const d=await r.json();
+    BIN_ID=d.metadata.id;
+    localStorage.setItem('703_bin_id',BIN_ID);
+    return true;
+  } catch(e){return false;}
+}
+
+async function pushToCloud(){
+  if(!BIN_ID){const ok=await createBin();if(!ok)return false;}
+  try {
+    setSyncStatus('syncing','Saving...');
+    await fetch(`${JSONBIN_URL}/${BIN_ID}`,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+      body:JSON.stringify(logged)
+    });
+    lastSyncTime=new Date();
+    setSyncStatus('ok','Synced · '+lastSyncTime.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+    return true;
+  } catch(e){setSyncStatus('err','Sync failed — tap ↻');return false;}
+}
+
+async function pullFromCloud(){
+  if(!BIN_ID){setSyncStatus('err','No bin — tap ↻ to create');return false;}
+  try {
+    setSyncStatus('syncing','Syncing...');
+    const r=await fetch(`${JSONBIN_URL}/${BIN_ID}/latest`,{
+      headers:{'X-Master-Key':JSONBIN_KEY}
+    });
+    const d=await r.json();
+    if(d.record){
+      // merge: keep local entries that are newer, take remote entries that are newer or missing locally
+      ['nicholas','chase'].forEach(a=>{
+        if(!d.record[a])return;
+        Object.keys(d.record[a]).forEach(k=>{
+          const remote=d.record[a][k];
+          const local=logged[a]?.[k];
+          if(!local||(remote.ts&&local.ts&&remote.ts>local.ts)){
+            if(!logged[a])logged[a]={};
+            logged[a][k]=remote;
+          }
+        });
+      });
+      saveLocal();
+      lastSyncTime=new Date();
+      setSyncStatus('ok','Synced · '+lastSyncTime.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+      render();
+    }
+    return true;
+  } catch(e){setSyncStatus('err','Sync failed — tap ↻');return false;}
+}
+
+async function syncNow(){
+  await pullFromCloud();
+  render();
+}
+
+function scheduleSync(){
+  if(syncTimer)clearTimeout(syncTimer);
+  syncTimer=setTimeout(()=>pushToCloud(),1500);
+}
+
+// auto-pull every 60 seconds while app is open
+setInterval(()=>{if(document.visibilityState==='visible')pullFromCloud();},60000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')pullFromCloud();});
+
+// ── LOCAL STORAGE ──────────────────────────────────────────────────────────
+function saveLocal(){try{localStorage.setItem('703v4_data',JSON.stringify(logged));}catch(e){}}
+function loadLocal(){
+  try{const s=localStorage.getItem('703v4_data');if(s)logged=JSON.parse(s);}catch(e){}
   if(!logged.nicholas)logged.nicholas={};
   if(!logged.chase)logged.chase={};
 }
-function saveData(){try{localStorage.setItem('703v3_data',JSON.stringify(logged));}catch(e){}}
 
-function isLogged(ath,wk,day){return!!logged[ath][`${wk}_${day}`];}
-function getLog(ath,wk,day){return logged[ath][`${wk}_${day}`]||null;}
+function isLogged(ath,wk,day){return!!logged[ath]?.[`${wk}_${day}`];}
+function getLog(ath,wk,day){return logged[ath]?.[`${wk}_${day}`]||null;}
 
 // ── MODAL ──────────────────────────────────────────────────────────────────
-function openLogModal(ath,wk,day,wo){
+function openLogModal(ath,wk,day){
+  const wo=getWO(wk,day);
   pendingLog={ath,wk,day,wo};
   const existing=getLog(ath,wk,day);
   document.getElementById('modal-title').textContent=`${ATH_LABEL[ath]} — ${day} Wk${wk}`;
@@ -356,49 +425,49 @@ function openLogModal(ath,wk,day,wo){
   document.getElementById('inp-notes').value=existing?.notes||'';
   const btn=document.getElementById('modal-submit');
   btn.className=`modal-btn submit ${ath}`;
-  btn.textContent='Save workout';
   document.getElementById('modal-overlay').classList.remove('hidden');
 }
 
 function closeModal(){document.getElementById('modal-overlay').classList.add('hidden');pendingLog=null;}
 function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
 
-function submitLog(){
+async function submitLog(){
   if(!pendingLog)return;
   const{ath,wk,day}=pendingLog;
   const dist=document.getElementById('inp-distance').value.trim();
   const pace=document.getElementById('inp-pace').value.trim();
   const hr=document.getElementById('inp-hr').value.trim();
   const notes=document.getElementById('inp-notes').value.trim();
-  if(dist||pace||hr||notes){
-    logged[ath][`${wk}_${day}`]={distance:dist,pace,hr,notes,ts:Date.now()};
-  } else {
-    // allow mark-complete with no data
-    logged[ath][`${wk}_${day}`]={distance:'',pace:'',hr:'',notes:'',ts:Date.now()};
-  }
-  saveData();
+  if(!logged[ath])logged[ath]={};
+  logged[ath][`${wk}_${day}`]={distance:dist,pace,hr,notes,ts:Date.now()};
+  saveLocal();
   closeModal();
   render();
+  showToast('Workout saved ✓');
+  scheduleSync();
 }
 
-// ── HEADER ──────────────────────────────────────────────────────────────────
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ── HEADER ─────────────────────────────────────────────────────────────────
 function updateHeader(){
   document.getElementById('hdr-sub').textContent=todayDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
   document.getElementById('race-chip').textContent=`${daysLeft()}d to race`;
-  const pct=Math.round(todayWk/46*100);
   const fill=document.getElementById('prog-fill');
-  fill.style.width=pct+'%';
-  fill.className=`prog-fill ${athlete==='chase'?'chase':'nick'}`;
+  fill.style.width=Math.round(todayWk/46*100)+'%';
+  fill.className='prog-fill '+(athlete==='chase'?'chase':'nick');
 }
 
-// ── TAB SWITCHING ──────────────────────────────────────────────────────────
 function switchAthlete(a){
   athlete=a;
   document.querySelectorAll('.ath-btn').forEach(b=>b.classList.remove('active'));
   const map={nicholas:0,chase:1,both:2};
   document.querySelectorAll('.ath-btn')[map[a]].classList.add('active');
-  updateHeader();
-  render();
+  updateHeader();render();
 }
 
 function showTab(name){
@@ -423,57 +492,45 @@ function renderToday(){
   const wo=getWO(todayWk,todayDay);
   const phase=getPhase(todayWk);
   const wkNote=PLAN.find(p=>p.w===todayWk&&p.note)?.note||'';
-  const el=document.getElementById('tab-today');
-
+  const showBoth=athlete==='both';
+  const athletes=showBoth?['nicholas','chase']:[athlete];
   let extras='';
   if(wo.plyo)extras+=`<div style="font-size:11px;color:#FF8A65;margin-bottom:4px;">🦘 ${wo.plyo}</div>`;
   if(wo.str)extras+=`<div style="font-size:11px;color:#FFD54F;">🏋️ ${wo.str}</div>`;
-
-  const showBoth=athlete==='both';
-  const athletes=showBoth?['nicholas','chase']:[athlete];
-
   let logSection='';
   if(wo.t!=='Rest'){
-    if(showBoth){
-      logSection=`<div class="log-btns">
-        ${athletes.map(a=>{
-          const lg=isLogged(a,todayWk,todayDay);
-          const logData=getLog(a,todayWk,todayDay);
-          return`<button class="log-btn ${lg?a+'-on':'off'}" onclick="openLogModal('${a}',${todayWk},'${todayDay}',getWO(${todayWk},'${todayDay}'))">
-            <span class="btn-name">${ATH_LABEL[a]}</span>
-            <span>${lg?'✓ Done':'Log workout'}</span>
-            ${lg&&logData?.distance?`<span style="font-size:9px;opacity:.7">${logData.distance}</span>`:''}
-          </button>`;
-        }).join('')}
-      </div>`;
-    } else {
-      const a=athlete;
-      const lg=isLogged(a,todayWk,todayDay);
-      const logData=getLog(a,todayWk,todayDay);
-      logSection=`<button class="log-btn ${lg?a+'-on':'off'}" style="width:100%" onclick="openLogModal('${a}',${todayWk},'${todayDay}',getWO(${todayWk},'${todayDay}'))">
-        ${lg?'✓ Logged':'Log this workout'}
-        ${lg&&logData?.distance?` · ${logData.distance}`:''}
-      </button>`;
-      if(lg&&logData){
+    logSection=`<div class="${showBoth?'log-btns':''}">
+      ${athletes.map(a=>{
+        const lg=isLogged(a,todayWk,todayDay);
+        const logData=getLog(a,todayWk,todayDay);
+        const cls=lg?`${a}-on`:'off';
+        const label=showBoth?`<span class="btn-name">${ATH_LABEL[a]}</span>`:'';
+        const dist=lg&&logData?.distance?`<span style="font-size:9px;opacity:.7">${logData.distance}</span>`:'';
+        return`<button class="log-btn ${cls}" ${showBoth?'':'style="width:100%"'} onclick="openLogModal('${a}',${todayWk},'${todayDay}')">
+          ${label}<span>${lg?'✓ Logged':'Log workout'}</span>${dist}
+        </button>`;
+      }).join('')}
+    </div>`;
+    // show logged data for single athlete view
+    if(!showBoth){
+      const logData=getLog(athlete,todayWk,todayDay);
+      if(logData){
         const bits=[];
-        if(logData.pace)bits.push(`Pace: ${logData.pace}`);
-        if(logData.hr)bits.push(`HR: ${logData.hr} bpm`);
-        if(logData.notes)bits.push(logData.notes);
-        if(bits.length)logSection+=`<div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6;">${bits.join(' · ')}</div>`;
+        if(logData.distance)bits.push(`📍 ${logData.distance}`);
+        if(logData.pace)bits.push(`⚡ ${logData.pace}`);
+        if(logData.hr)bits.push(`❤️ ${logData.hr} bpm`);
+        if(logData.notes)bits.push(`💬 ${logData.notes}`);
+        if(bits.length)logSection+=`<div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.8;padding:8px 10px;background:var(--surface2);border-radius:8px;">${bits.join('<br>')}</div>`;
       }
     }
   } else {
     logSection=`<div style="color:var(--muted);font-size:13px;">Rest day — recover well 💤</div>`;
   }
-
-  el.innerHTML=`
+  document.getElementById('tab-today').innerHTML=`
     <div class="hero">
-      <div class="hero-phase ${showBoth?'nick':athlete}">Phase ${phase.num}: ${phase.name} · Wks ${phase.s}–${phase.e}</div>
+      <div class="hero-phase ${showBoth?'both':athlete}">Phase ${phase.num}: ${phase.name} · Wks ${phase.s}–${phase.e}</div>
       <div class="hero-body">
-        <div class="hero-top">
-          <span class="hero-emoji">${EMOJI[wo.t]||'😴'}</span>
-          <span class="hero-badge b-${wo.t}">${wo.t.toUpperCase()}</span>
-        </div>
+        <div class="hero-top"><span class="hero-emoji">${EMOJI[wo.t]||'😴'}</span><span class="hero-badge b-${wo.t}">${wo.t.toUpperCase()}</span></div>
         <div class="hero-text">${wo.x}</div>
         ${extras?`<div class="hero-extra">${extras}</div>`:''}
         ${logSection}
@@ -495,7 +552,7 @@ function renderToday(){
   `;
 }
 
-// ── WEEK ──────────────────────────────────────────────────────────────────
+// ── WEEK ───────────────────────────────────────────────────────────────────
 function renderWeek(){
   const wk=viewWeek;
   const phase=getPhase(wk);
@@ -514,10 +571,7 @@ function renderWeek(){
   const active=rows.filter(r=>r.wo.t!=='Rest').length;
   const wkNote=PLAN.find(p=>p.w===wk&&p.note)?.note||'';
   const isThisWk=wk===todayWk;
-
-  // count done per athlete
   const doneCounts=athletes.map(a=>rows.filter(r=>isLogged(a,wk,r.d)).length);
-
   document.getElementById('tab-week').innerHTML=`
     <div class="wnav">
       <button class="narr" onclick="changeWeek(-1)">‹</button>
@@ -530,7 +584,7 @@ function renderWeek(){
     <div class="mgrid" style="margin-top:6px;">
       <div class="metric"><div class="metric-val">${active}</div><div class="metric-lbl">Active</div></div>
       <div class="metric"><div class="metric-val">${totalMi.toFixed(0)}</div><div class="metric-lbl">Miles</div></div>
-      <div class="metric"><div class="metric-val">${athletes.map((a,i)=>`<span style="color:${a==='nicholas'?'var(--nick)':'var(--chase)'}">${doneCounts[i]}</span>`).join('<span style="color:var(--muted);">/</span>')}/${active}</div><div class="metric-lbl">Done</div></div>
+      <div class="metric"><div class="metric-val">${athletes.map((a,i)=>`<span style="color:${a==='nicholas'?'var(--nick)':'var(--chase)'}">${doneCounts[i]}</span>`).join('/')}/${active}</div><div class="metric-lbl">Done</div></div>
     </div>
     ${wkNote?`<div class="note-row">${wkNote}</div>`:''}
     <div class="wrows">
@@ -543,8 +597,9 @@ function renderWeek(){
           ${athletes.map(a=>{
             const lg=isLogged(a,wk,d);
             const logData=getLog(a,wk,d);
-            return`<button class="wlog ${lg?a+'-on':''}" onclick="openLogModal('${a}',${wk},'${d}',getWO(${wk},'${d}'))" title="${ATH_LABEL[a]}">
-              ${showBoth?(a==='nicholas'?'N':'C')+' ':''}${lg?'✓':'+'} ${lg&&logData?.distance?logData.distance:''}
+            const dist=lg&&logData?.distance?` ${logData.distance}`:'';
+            return`<button class="wlog ${lg?a+'-on':''}" onclick="openLogModal('${a}',${wk},'${d}')" title="${ATH_LABEL[a]}">
+              ${showBoth?(a==='nicholas'?'N':'C')+' ':''}${lg?'✓':'+'} ${dist}
             </button>`;
           }).join('')}
         </div>`:'';
@@ -570,32 +625,31 @@ function parseMiles(str){
 }
 
 function getMileageStats(ath,weekRange){
-  let run=0,bike=0,swim=0,workoutCount=0;
-  const[wStart,wEnd]=weekRange||[1,46];
+  let run=0,bike=0,swim=0,count=0;
+  const[wS,wE]=weekRange||[1,46];
   PLAN.forEach(p=>{
-    if(p.w<wStart||p.w>wEnd)return;
+    if(p.w<wS||p.w>wE)return;
     const logData=getLog(ath,p.w,p.d);
     if(!logData)return;
-    workoutCount++;
+    count++;
     const mi=parseMiles(logData.distance);
     if(p.t==='Run'||p.t==='Recovery')run+=mi;
     else if(p.t==='Bike')bike+=mi;
     else if(p.t==='Swim')swim+=mi;
     else if(p.t==='Brick'){
-      // try to split brick
       const bm=p.x.match(/BIKE\s+([\d.]+)\s*mi.*?RUN\s+([\d.]+)\s*mi/i);
       if(bm&&!mi){bike+=parseFloat(bm[1]);run+=parseFloat(bm[2]);}
       else if(mi)bike+=mi;
     }
   });
-  return{run,bike,swim,workoutCount};
+  return{run,bike,swim,count};
 }
 
-function getPlannedMileage(weekRange){
+function getPlannedMiles(weekRange){
   let run=0,bike=0,swim=0;
-  const[wStart,wEnd]=weekRange||[1,46];
+  const[wS,wE]=weekRange||[1,46];
   PLAN.forEach(p=>{
-    if(p.w<wStart||p.w>wEnd)return;
+    if(p.w<wS||p.w>wE)return;
     const m=p.x.match(/(\d+(?:\.\d+)?)\s*mi/);
     const sm=p.x.match(/(\d+)m\b/);
     if(p.t==='Run'||p.t==='Recovery'){if(m)run+=parseFloat(m[1]);}
@@ -614,21 +668,13 @@ function renderStats(){
   const athletes=showBoth?['nicholas','chase']:[athlete];
   const isWeekly=statSubTab==='weekly';
   const range=isWeekly?[todayWk,todayWk]:[1,todayWk];
-
-  const el=document.getElementById('tab-stats');
-
-  const planned=isWeekly?getPlannedMileage([todayWk,todayWk]):getPlannedMileage([1,todayWk]);
+  const planned=getPlannedMiles(range);
   const statsPerAth=athletes.map(a=>({ath:a,...getMileageStats(a,range)}));
-
   const maxRun=Math.max(...statsPerAth.map(s=>s.run),planned.run,0.1);
   const maxBike=Math.max(...statsPerAth.map(s=>s.bike),planned.bike,0.1);
   const maxSwim=Math.max(...statsPerAth.map(s=>s.swim),planned.swim,0.1);
-
-  function barColor(ath){return ath==='nicholas'?'var(--nick)':'var(--chase)';}
-  function mileBar(val,max,color){
-    return`<div class="mile-bar-bg"><div class="mile-bar-fill" style="width:${Math.min(100,Math.round(val/max*100))}%;background:${color};"></div></div>`;
-  }
-
+  const barC=a=>a==='nicholas'?'var(--nick)':'var(--chase)';
+  function mBar(val,max,color){return`<div class="mile-bar-bg"><div class="mile-bar-fill" style="width:${Math.min(100,max>0?Math.round(val/max*100):0)}%;background:${color};"></div></div>`;}
   let duoGrid='';
   if(showBoth){
     duoGrid=`<div class="duo-compare">
@@ -636,42 +682,38 @@ function renderStats(){
         const s=getMileageStats(a,range);
         return`<div class="duo-card">
           <div class="duo-name ${a}">${ATH_LABEL[a]}</div>
-          <div class="duo-val">${s.workoutCount}</div>
-          <div class="duo-lbl">workouts logged</div>
-          <div style="margin-top:8px;font-size:11px;color:var(--muted);line-height:1.9;">
-            🏃 ${s.run.toFixed(1)} mi<br>🚴 ${s.bike.toFixed(1)} mi<br>🏊 ${s.swim.toFixed(1)} mi
-          </div>
+          <div class="duo-val">${s.count}</div><div class="duo-lbl">logged</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--muted);line-height:1.9;">🏃 ${s.run.toFixed(1)} mi<br>🚴 ${s.bike.toFixed(1)} mi<br>🏊 ${s.swim.toFixed(1)} mi</div>
         </div>`;
       }).join('')}
     </div>`;
   }
-
-  el.innerHTML=`
+  document.getElementById('tab-stats').innerHTML=`
     <div class="stat-tabs">
       <button class="stat-btn ${statSubTab==='alltime'?'active':''}" onclick="setStatTab('alltime')">All-time</button>
       <button class="stat-btn ${statSubTab==='weekly'?'active':''}" onclick="setStatTab('weekly')">This week</button>
     </div>
     ${duoGrid}
     <div class="card">
-      <div class="clabel">${isWeekly?'Week '+todayWk+' mileage (logged vs planned)':'Total miles logged (Wk 1 → '+todayWk+')'}</div>
-      ${['Run','Bike','Swim'].map((type,ti)=>{
-        const planned_val=ti===0?planned.run:ti===1?planned.bike:planned.swim;
+      <div class="clabel">${isWeekly?'Week '+todayWk+' — logged vs planned':'Wk 1 → '+todayWk+' — logged vs planned'}</div>
+      ${[['Run','🏃',0],['Bike','🚴',1],['Swim','🏊',2]].map(([type,icon,ti])=>{
+        const pv=ti===0?planned.run:ti===1?planned.bike:planned.swim;
+        const mx=ti===0?maxRun:ti===1?maxBike:maxSwim;
         return`<div class="mile-row">
-          <div class="mile-label">${type==='Run'?'🏃':type==='Bike'?'🚴':'🏊'} ${type}</div>
+          <div class="mile-label">${icon} ${type}</div>
           <div class="mile-bars">
             ${statsPerAth.map(s=>{
               const val=ti===0?s.run:ti===1?s.bike:s.swim;
-              const maxV=ti===0?maxRun:ti===1?maxBike:maxSwim;
               return`<div class="mile-bar-wrap">
-                <div class="mile-name" style="color:${barColor(s.ath)};font-size:9px;">${showBoth?ATH_LABEL[s.ath]:''}</div>
-                ${mileBar(val,maxV,barColor(s.ath))}
+                ${showBoth?`<div class="mile-name" style="color:${barC(s.ath)};font-size:9px;">${ATH_LABEL[s.ath]}</div>`:''}
+                ${mBar(val,mx,barC(s.ath))}
                 <div class="mile-bar-val">${val.toFixed(1)} mi</div>
               </div>`;
             }).join('')}
             <div class="mile-bar-wrap" style="opacity:.4">
-              <div class="mile-name" style="font-size:9px;color:var(--muted);">Plan</div>
-              ${mileBar(planned_val,ti===0?maxRun:ti===1?maxBike:maxSwim,'var(--muted)')}
-              <div class="mile-bar-val">${planned_val.toFixed(1)} mi</div>
+              ${showBoth?`<div class="mile-name" style="font-size:9px;">Plan</div>`:''}
+              ${mBar(pv,mx,'var(--muted)')}
+              <div class="mile-bar-val">${pv.toFixed(1)} mi</div>
             </div>
           </div>
         </div>`;
@@ -688,49 +730,38 @@ function renderStats(){
     </div>
   `;
 }
-
 function setStatTab(t){statSubTab=t;renderStats();}
 
-// ── PROGRESS ──────────────────────────────────────────────────────────────
+// ── PROGRESS ───────────────────────────────────────────────────────────────
 function renderProgress(){
   const showBoth=athlete==='both';
   const athletes=showBoth?['nicholas','chase']:[athlete];
   const total=PLAN.filter(p=>p.t!=='Rest').length;
-
-  const el=document.getElementById('tab-progress');
-
   const byPhase=PHASES.map(ph=>{
     const pw=PLAN.filter(p=>p.t!=='Rest'&&p.w>=ph.s&&p.w<=ph.e);
     const donePer=athletes.map(a=>pw.filter(p=>isLogged(a,p.w,p.d)).length);
     return{...ph,total:pw.length,donePer};
   });
-
   const totalDone=athletes.map(a=>PLAN.filter(p=>p.t!=='Rest'&&isLogged(a,p.w,p.d)).length);
-
-  el.innerHTML=`
+  document.getElementById('tab-progress').innerHTML=`
     ${showBoth?`<div class="duo-compare">
       ${['nicholas','chase'].map((a,i)=>`<div class="duo-card">
         <div class="duo-name ${a}">${ATH_LABEL[a]}</div>
-        <div class="duo-val">${totalDone[i]}</div>
-        <div class="duo-lbl">workouts done</div>
+        <div class="duo-val">${totalDone[i]}</div><div class="duo-lbl">workouts done</div>
       </div>`).join('')}
-    </div>`:`
-    <div class="mgrid">
+    </div>`:`<div class="mgrid">
       <div class="metric"><div class="metric-val">${totalDone[0]}</div><div class="metric-lbl">Done</div></div>
       <div class="metric"><div class="metric-val">${total-totalDone[0]}</div><div class="metric-lbl">Left</div></div>
       <div class="metric"><div class="metric-val">${daysLeft()}</div><div class="metric-lbl">Days</div></div>
     </div>`}
     <div class="card">
       <div class="clabel">By phase</div>
-      ${byPhase.map(ph=>`
-        <div class="pbar">
-          <div class="pbar-hd"><span style="font-weight:500;">Phase ${ph.num}: ${ph.name}</span><span style="color:var(--muted);font-size:11px;">${ph.donePer.map((d,i)=>`<span style="color:${athletes[i]==='nicholas'?'var(--nick)':'var(--chase)'}">${d}</span>`).join('/')}/${ph.total}</span></div>
-          ${athletes.map((a,i)=>{
-            const pct=ph.total?Math.round(ph.donePer[i]/ph.total*100):0;
-            return`<div class="pbar-bg" style="margin-bottom:3px;"><div class="pbar-fill" style="width:${pct}%;background:${a==='nicholas'?'var(--nick)':'var(--chase)'};"></div></div>`;
-          }).join('')}
-          <div class="pbar-wks">Weeks ${ph.s}–${ph.e}</div>
-        </div>`).join('')}
+      ${byPhase.map(ph=>`<div class="pbar">
+        <div class="pbar-hd"><span style="font-weight:500;">Phase ${ph.num}: ${ph.name}</span>
+        <span style="color:var(--muted);font-size:11px;">${ph.donePer.map((d,i)=>`<span style="color:${athletes[i]==='nicholas'?'var(--nick)':'var(--chase)'}">${d}</span>`).join('/')}/${ph.total}</span></div>
+        ${athletes.map((a,i)=>`<div class="pbar-bg" style="margin-bottom:3px;"><div class="pbar-fill" style="width:${ph.total?Math.round(ph.donePer[i]/ph.total*100):0}%;background:${a==='nicholas'?'var(--nick)':'var(--chase)'};"></div></div>`).join('')}
+        <div class="pbar-wks">Weeks ${ph.s}–${ph.e}</div>
+      </div>`).join('')}
     </div>
     <div class="card">
       <div style="font-size:12px;color:var(--muted);line-height:2;">
@@ -768,11 +799,13 @@ function renderZones(){
 
 function changeWeek(dir){viewWeek=Math.min(Math.max(viewWeek+dir,1),46);renderWeek();}
 
-// ── INIT ──────────────────────────────────────────────────────────────────
+// ── INIT ───────────────────────────────────────────────────────────────────
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
-loadData();
+loadLocal();
 updateHeader();
 renderToday();
+// initial cloud pull
+pullFromCloud().then(()=>render());
 </script>
 </body>
 </html>
