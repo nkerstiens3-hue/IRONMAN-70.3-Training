@@ -237,61 +237,340 @@ const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 const ATH_LABEL = {nicholas:'Nicholas',chase:'Chase'};
 
 const PLAN = [
-{w:1,d:'Mon',t:'Run',x:'RUN 3 mi | Z2 | Easy & conversational',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:1,d:'Tue',t:'Rest',x:'REST / Active Recovery'},{w:1,d:'Wed',t:'Bike',x:'BIKE 12 mi | Z2 | Easy spin, cadence 85–90rpm',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:1,d:'Thu',t:'Rest',x:'REST / Active Recovery'},{w:1,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Negative split'},{w:1,d:'Sat',t:'Bike',x:'BIKE 12 mi | Z2 | First ride',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:1,d:'Sun',t:'Rest',x:'REST',note:'Plyo + run Mon. Strength Wed & Sat.'},
-{w:2,d:'Mon',t:'Run',x:'RUN 3 mi | Z2'},{w:2,d:'Tue',t:'Rest',x:'REST'},{w:2,d:'Wed',t:'Bike',x:'BIKE 14 mi | Z2 | Hold 85–90 rpm',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:2,d:'Thu',t:'Rest',x:'REST'},{w:2,d:'Fri',t:'Run',x:'RUN 3 mi | Z2'},{w:2,d:'Sat',t:'Bike',x:'BIKE 14 mi | Z2 | Easy aerobic'},{w:2,d:'Sun',t:'Rest',x:'REST'},
-{w:3,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:3,d:'Tue',t:'Rest',x:'REST'},{w:3,d:'Wed',t:'Bike',x:'BIKE 15 mi | Z2 | Smooth pedal stroke',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:3,d:'Thu',t:'Rest',x:'REST'},{w:3,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Last mile Z3'},{w:3,d:'Sat',t:'Bike',x:'BIKE 15 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:3,d:'Sun',t:'Rest',x:'REST'},
-{w:4,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Very easy',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:4,d:'Tue',t:'Rest',x:'REST'},{w:4,d:'Wed',t:'Recovery',x:'BIKE 10 mi | Z1 | Easy spin'},{w:4,d:'Thu',t:'Rest',x:'REST'},{w:4,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:4,d:'Sat',t:'Recovery',x:'BIKE 10 mi | Z1'},{w:4,d:'Sun',t:'Rest',x:'REST'},
-{w:5,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:5,d:'Tue',t:'Rest',x:'REST'},{w:5,d:'Wed',t:'Bike',x:'BIKE 16 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:5,d:'Thu',t:'Rest',x:'REST'},{w:5,d:'Fri',t:'Run',x:'RUN 4 mi | Z2'},{w:5,d:'Sat',t:'Bike',x:'BIKE 16 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:5,d:'Sun',t:'Rest',x:'REST'},
-{w:6,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:6,d:'Tue',t:'Rest',x:'REST'},{w:6,d:'Wed',t:'Bike',x:'BIKE 18 mi | Z2 | Build to 90 min',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:6,d:'Thu',t:'Rest',x:'REST'},{w:6,d:'Fri',t:'Run',x:'RUN 5 mi | Z2/Z3 | 3×1 mi at Z3'},{w:6,d:'Sat',t:'Bike',x:'BIKE 18 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:6,d:'Sun',t:'Rest',x:'REST'},
-{w:7,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},{w:7,d:'Tue',t:'Rest',x:'REST'},{w:7,d:'Wed',t:'Bike',x:'BIKE 19 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:7,d:'Thu',t:'Rest',x:'REST'},{w:7,d:'Fri',t:'Run',x:'RUN 5 mi | Z2 | Miles 3–5 at Z3'},{w:7,d:'Sat',t:'Bike',x:'BIKE 19 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:7,d:'Sun',t:'Rest',x:'REST'},
-{w:8,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:8,d:'Tue',t:'Rest',x:'REST'},{w:8,d:'Wed',t:'Recovery',x:'BIKE 12 mi | Z1 | Easy spin'},{w:8,d:'Thu',t:'Rest',x:'REST'},{w:8,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:8,d:'Sat',t:'Recovery',x:'BIKE 12 mi | Z1'},{w:8,d:'Sun',t:'Rest',x:'REST'},
-{w:9,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run',note:'End of Phase 1.'},{w:9,d:'Tue',t:'Rest',x:'REST'},{w:9,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Longest ride yet',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:9,d:'Thu',t:'Rest',x:'REST'},{w:9,d:'Fri',t:'Run',x:'RUN 6 mi | Z2 | 4×1 mi at Z3'},{w:9,d:'Sat',t:'Bike',x:'BIKE 20 mi | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},{w:9,d:'Sun',t:'Rest',x:'REST'},
-{w:10,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run',note:'Phase 2: Max strength begins.'},{w:10,d:'Tue',t:'Rest',x:'REST'},{w:10,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Cadence drills',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:10,d:'Thu',t:'Rest',x:'REST'},{w:10,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:10,d:'Sat',t:'Run',x:'RUN 10 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:10,d:'Sun',t:'Rest',x:'REST'},
-{w:11,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},{w:11,d:'Tue',t:'Rest',x:'REST'},{w:11,d:'Wed',t:'Bike',x:'BIKE 22 mi | Z2 | Hold 85–90 rpm',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:11,d:'Thu',t:'Rest',x:'REST'},{w:11,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:11,d:'Sat',t:'Run',x:'RUN 11 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:11,d:'Sun',t:'Rest',x:'REST'},
-{w:12,d:'Mon',t:'Run',x:'RUN 6 mi | Z2/Z3 | Last 2 mi Z3',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},{w:12,d:'Tue',t:'Rest',x:'REST'},{w:12,d:'Wed',t:'Bike',x:'BIKE 24 mi | Z2 | 2×5 mi at Z3',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:12,d:'Thu',t:'Rest',x:'REST'},{w:12,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:12,d:'Sat',t:'Run',x:'RUN 11 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:12,d:'Sun',t:'Rest',x:'REST'},
-{w:13,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:13,d:'Tue',t:'Rest',x:'REST'},{w:13,d:'Wed',t:'Recovery',x:'BIKE 16 mi | Z1'},{w:13,d:'Thu',t:'Rest',x:'REST'},{w:13,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:13,d:'Sat',t:'Recovery',x:'RUN 8 mi | Z1/Z2 | Cutback'},{w:13,d:'Sun',t:'Rest',x:'REST'},
-{w:14,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run',note:'★ First brick!'},{w:14,d:'Tue',t:'Rest',x:'REST'},{w:14,d:'Wed',t:'Bike',x:'BIKE 25 mi | Z2',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:14,d:'Thu',t:'Rest',x:'REST'},{w:14,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:14,d:'Sat',t:'Brick',x:'BRICK: BIKE 20 mi Z2 → RUN 2 mi Z2 | First brick!',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:14,d:'Sun',t:'Rest',x:'REST'},
-{w:15,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},{w:15,d:'Tue',t:'Rest',x:'REST'},{w:15,d:'Wed',t:'Bike',x:'BIKE 26 mi | Z2 | 2×6 mi at Z3',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:15,d:'Thu',t:'Rest',x:'REST'},{w:15,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},{w:15,d:'Sat',t:'Run',x:'RUN 12 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:15,d:'Sun',t:'Rest',x:'REST'},
-{w:16,d:'Mon',t:'Run',x:'RUN 6 mi | Z2/Z3',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},{w:16,d:'Tue',t:'Rest',x:'REST'},{w:16,d:'Wed',t:'Bike',x:'BIKE 28 mi | Z2/Z3 | Build last 8 mi to Z3',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:16,d:'Thu',t:'Rest',x:'REST'},{w:16,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:16,d:'Sat',t:'Brick',x:'BRICK: BIKE 22 mi Z2 → RUN 3 mi Z2',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:16,d:'Sun',t:'Rest',x:'REST'},
-{w:17,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:17,d:'Tue',t:'Rest',x:'REST'},{w:17,d:'Wed',t:'Recovery',x:'BIKE 18 mi | Z1'},{w:17,d:'Thu',t:'Rest',x:'REST'},{w:17,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},{w:17,d:'Sat',t:'Recovery',x:'RUN 9 mi | Z1/Z2 | Cutback'},{w:17,d:'Sun',t:'Rest',x:'REST'},
-{w:18,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},{w:18,d:'Tue',t:'Rest',x:'REST'},{w:18,d:'Wed',t:'Bike',x:'BIKE 30 mi | Z2 | Longest ride yet',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:18,d:'Thu',t:'Rest',x:'REST'},{w:18,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:18,d:'Sat',t:'Brick',x:'BRICK: BIKE 24 mi Z2 → RUN 3 mi Z2',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:18,d:'Sun',t:'Rest',x:'REST'},
-{w:19,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run',note:'Last 4-day week.'},{w:19,d:'Tue',t:'Rest',x:'REST'},{w:19,d:'Wed',t:'Bike',x:'BIKE 32 mi | Z2 | Negative split',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:19,d:'Thu',t:'Rest',x:'REST'},{w:19,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},{w:19,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Longest long run so far',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},{w:19,d:'Sun',t:'Rest',x:'REST'},
-{w:20,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'★ Thu activates as 5th day.'},{w:20,d:'Tue',t:'Swim',x:'SWIM 400m | Easy — breathe & feel the water'},{w:20,d:'Wed',t:'Bike',x:'BIKE 30 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:20,d:'Thu',t:'Run',x:'RUN 5 mi | Z2 | Thu activates!',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:20,d:'Fri',t:'Rest',x:'REST'},{w:20,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Long run'},{w:20,d:'Sun',t:'Rest',x:'REST'},
-{w:21,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:21,d:'Tue',t:'Swim',x:'SWIM 500m | Z2 | Breathe every 3 strokes'},{w:21,d:'Wed',t:'Bike',x:'BIKE 31 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:21,d:'Thu',t:'Run',x:'RUN 5 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:21,d:'Fri',t:'Rest',x:'REST'},{w:21,d:'Sat',t:'Run',x:'RUN 14 mi | Z2 | Long run'},{w:21,d:'Sun',t:'Rest',x:'REST'},
-{w:22,d:'Mon',t:'Run',x:'RUN 7 mi | Z2/Z3 | Last 2 mi Z3',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:22,d:'Tue',t:'Swim',x:'SWIM 600m | Z2 | Sighting every 10 strokes'},{w:22,d:'Wed',t:'Bike',x:'BIKE 32 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:22,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:22,d:'Fri',t:'Rest',x:'REST'},{w:22,d:'Sat',t:'Brick',x:'BRICK: BIKE 25 mi Z2 → RUN 3 mi Z2'},{w:22,d:'Sun',t:'Rest',x:'REST'},
-{w:23,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:23,d:'Tue',t:'Recovery',x:'SWIM 400m | Z1 | Easy'},{w:23,d:'Wed',t:'Recovery',x:'BIKE 22 mi | Z1 | Cutback'},{w:23,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},{w:23,d:'Fri',t:'Rest',x:'REST'},{w:23,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},{w:23,d:'Sun',t:'Rest',x:'REST'},
-{w:24,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:24,d:'Tue',t:'Swim',x:'SWIM 700m | Z2 | 4×100m + 300m easy'},{w:24,d:'Wed',t:'Bike',x:'BIKE 34 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:24,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:24,d:'Fri',t:'Rest',x:'REST'},{w:24,d:'Sat',t:'Run',x:'RUN 14 mi | Z2 | Long run'},{w:24,d:'Sun',t:'Rest',x:'REST'},
-{w:25,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:25,d:'Tue',t:'Swim',x:'SWIM 800m | Z2 | 2×300m + 200m easy'},{w:25,d:'Wed',t:'Bike',x:'BIKE 35 mi | Z2 | 2×8 mi at Z3',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:25,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:25,d:'Fri',t:'Rest',x:'REST'},{w:25,d:'Sat',t:'Brick',x:'BRICK: BIKE 28 mi Z2 → RUN 3 mi Z2'},{w:25,d:'Sun',t:'Rest',x:'REST'},
-{w:26,d:'Mon',t:'Run',x:'RUN 8 mi | Z2/Z3',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'★ 15-mile long run milestone'},{w:26,d:'Tue',t:'Swim',x:'SWIM 900m | Z2 | Continuous 400m sets'},{w:26,d:'Wed',t:'Bike',x:'BIKE 36 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:26,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:26,d:'Fri',t:'Rest',x:'REST'},{w:26,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:26,d:'Sun',t:'Rest',x:'REST'},
-{w:27,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:27,d:'Tue',t:'Recovery',x:'SWIM 600m | Z1 | Easy'},{w:27,d:'Wed',t:'Recovery',x:'BIKE 24 mi | Z1 | Cutback'},{w:27,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},{w:27,d:'Fri',t:'Rest',x:'REST'},{w:27,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},{w:27,d:'Sun',t:'Rest',x:'REST'},
-{w:28,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'★ 1000m swim milestone'},{w:28,d:'Tue',t:'Swim',x:'SWIM 1000m | Z2 | MILESTONE — 2×400m + 200m'},{w:28,d:'Wed',t:'Bike',x:'BIKE 38 mi | Z2 | Steady aerobic',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:28,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:28,d:'Fri',t:'Rest',x:'REST'},{w:28,d:'Sat',t:'Brick',x:'BRICK: BIKE 30 mi Z2 → RUN 4 mi Z2'},{w:28,d:'Sun',t:'Rest',x:'REST'},
-{w:29,d:'Mon',t:'Run',x:'RUN 9 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:29,d:'Tue',t:'Swim',x:'SWIM 1100m | Z2 | 3×300m + 200m easy'},{w:29,d:'Wed',t:'Bike',x:'BIKE 40 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:29,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:29,d:'Fri',t:'Rest',x:'REST'},{w:29,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:29,d:'Sun',t:'Rest',x:'REST'},
-{w:30,d:'Mon',t:'Run',x:'RUN 9 mi | Z2 | Last 2 mi Z3',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'Last Full Tri Base week.'},{w:30,d:'Tue',t:'Swim',x:'SWIM 1200m | Z2 | 2×500m + 200m cool-down'},{w:30,d:'Wed',t:'Bike',x:'BIKE 42 mi | Z2 | Negative split',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},{w:30,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},{w:30,d:'Fri',t:'Rest',x:'REST'},{w:30,d:'Sat',t:'Brick',x:'BRICK: BIKE 32 mi Z2 → RUN 4 mi Z2'},{w:30,d:'Sun',t:'Rest',x:'REST'},
-{w:31,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'Build: strength → maintenance.'},{w:31,d:'Tue',t:'Swim',x:'SWIM 1300m | Z2 | 3×400m'},{w:31,d:'Wed',t:'Bike',x:'BIKE 42 mi | Z2/Z3 | Last 10 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:31,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:31,d:'Fri',t:'Rest',x:'REST'},{w:31,d:'Sat',t:'Brick',x:'BRICK: BIKE 34 mi Z3 → RUN 4 mi Z2'},{w:31,d:'Sun',t:'Rest',x:'REST'},
-{w:32,d:'Mon',t:'Run',x:'RUN 9 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 16-mile long run milestone'},{w:32,d:'Tue',t:'Swim',x:'SWIM 1400m | Z2/Z3 | 4×300m at Z3'},{w:32,d:'Wed',t:'Bike',x:'BIKE 44 mi | Z2 | Steady aerobic',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:32,d:'Thu',t:'Run',x:'RUN 8 mi | Z2/Z3 | 3×1 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:32,d:'Fri',t:'Rest',x:'REST'},{w:32,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Long run'},{w:32,d:'Sun',t:'Rest',x:'REST'},
-{w:33,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 1500m swim — race distance!'},{w:33,d:'Tue',t:'Swim',x:'SWIM 1500m | Z2 | MILESTONE — race distance'},{w:33,d:'Wed',t:'Bike',x:'BIKE 45 mi | Z2/Z3 | 2×10 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:33,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:33,d:'Fri',t:'Rest',x:'REST'},{w:33,d:'Sat',t:'Brick',x:'BRICK: BIKE 36 mi Z3 → RUN 5 mi Z2'},{w:33,d:'Sun',t:'Rest',x:'REST'},
-{w:34,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:34,d:'Tue',t:'Recovery',x:'SWIM 900m | Z1 | Easy'},{w:34,d:'Wed',t:'Recovery',x:'BIKE 28 mi | Z1 | Cutback'},{w:34,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:34,d:'Fri',t:'Rest',x:'REST'},{w:34,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:34,d:'Sun',t:'Rest',x:'REST'},
-{w:35,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:35,d:'Tue',t:'Swim',x:'SWIM 1600m | Z2/Z3 | 4×350m Z3'},{w:35,d:'Wed',t:'Bike',x:'BIKE 46 mi | Z2/Z3 | Last 12 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:35,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:35,d:'Fri',t:'Rest',x:'REST'},{w:35,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Long run'},{w:35,d:'Sun',t:'Rest',x:'REST'},
-{w:36,d:'Mon',t:'Run',x:'RUN 10 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:36,d:'Tue',t:'Swim',x:'SWIM 1700m | Z2 | 3×500m + 200m'},{w:36,d:'Wed',t:'Bike',x:'BIKE 48 mi | Z2/Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:36,d:'Thu',t:'Run',x:'RUN 8 mi | Z2/Z3 | 4×1 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:36,d:'Fri',t:'Rest',x:'REST'},{w:36,d:'Sat',t:'Brick',x:'BRICK: BIKE 38 mi Z3 → RUN 5 mi Z2'},{w:36,d:'Sun',t:'Rest',x:'REST'},
-{w:37,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:37,d:'Tue',t:'Swim',x:'SWIM 1800m | Z2/Z3 | 2×800m Z3 + 200m easy'},{w:37,d:'Wed',t:'Bike',x:'BIKE 49 mi | Z3 | Tempo — race effort',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:37,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:37,d:'Fri',t:'Rest',x:'REST'},{w:37,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},{w:37,d:'Sun',t:'Rest',x:'REST'},
-{w:38,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:38,d:'Tue',t:'Recovery',x:'SWIM 1000m | Z1 | Easy'},{w:38,d:'Wed',t:'Recovery',x:'BIKE 30 mi | Z1 | Cutback'},{w:38,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:38,d:'Fri',t:'Rest',x:'REST'},{w:38,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:38,d:'Sun',t:'Rest',x:'REST'},
-{w:39,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | 4×1 mi Z4 threshold',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 50-mile ride milestone'},{w:39,d:'Tue',t:'Swim',x:'SWIM 1900m | Z2/Z3 | 4×400m Z3 + 300m easy'},{w:39,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z2/Z3 | Longest ride yet',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:39,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:39,d:'Fri',t:'Rest',x:'REST'},{w:39,d:'Sat',t:'Brick',x:'BRICK: BIKE 42 mi Z3 → RUN 5 mi Z2 | Race-pace'},{w:39,d:'Sun',t:'Rest',x:'REST'},
-{w:40,d:'Mon',t:'Run',x:'RUN 11 mi | Z2/Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ Last 16-mi long run. Last build week.'},{w:40,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2 | 2×900m + 200m cool-down'},{w:40,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z3 | 2×12 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},{w:40,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:40,d:'Fri',t:'Rest',x:'REST'},{w:40,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Final peak long run'},{w:40,d:'Sun',t:'Rest',x:'REST'},
-{w:41,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'Peak: strength Wed only.'},{w:41,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2/Z3 | 4×400m Z3'},{w:41,d:'Wed',t:'Bike',x:'BIKE 52 mi | Z2/Z3',str:'Maintenance 2–3×5 — Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},{w:41,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:41,d:'Fri',t:'Rest',x:'REST'},{w:41,d:'Sat',t:'Brick',x:'BRICK: BIKE 44 mi Z3 → RUN 6 mi Z3 | Key race-sim'},{w:41,d:'Sun',t:'Rest',x:'REST'},
-{w:42,d:'Mon',t:'Run',x:'RUN 10 mi | Z3 | Race-pace effort',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 2100m swim — beyond race distance'},{w:42,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2 | 3×600m — beyond race distance!'},{w:42,d:'Wed',t:'Bike',x:'BIKE 54 mi | Z2/Z3 | Negative split',str:'Maintenance 2–3×5 — Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},{w:42,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:42,d:'Fri',t:'Rest',x:'REST'},{w:42,d:'Sat',t:'Brick',x:'BRICK: BIKE 45 mi Z3 → RUN 6 mi Z3'},{w:42,d:'Sun',t:'Rest',x:'REST'},
-{w:43,d:'Mon',t:'Run',x:'RUN 11 mi | Z2/Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 55-mile peak ride. Hardest week.'},{w:43,d:'Tue',t:'Swim',x:'SWIM 2000m | Z3 | Race simulation'},{w:43,d:'Wed',t:'Bike',x:'BIKE 55 mi | Z3 | Longest ride — race effort',str:'Maintenance 2–3×5 — Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},{w:43,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},{w:43,d:'Fri',t:'Rest',x:'REST'},{w:43,d:'Sat',t:'Brick',x:'BRICK: BIKE 46 mi Z3 → RUN 6 mi Z3 | Full race-sim'},{w:43,d:'Sun',t:'Rest',x:'REST'},
-{w:44,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},{w:44,d:'Tue',t:'Recovery',x:'SWIM 1200m | Z1 | Easy'},{w:44,d:'Wed',t:'Recovery',x:'BIKE 32 mi | Z1 | Cutback'},{w:44,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},{w:44,d:'Fri',t:'Rest',x:'REST'},{w:44,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},{w:44,d:'Sun',t:'Rest',x:'REST'},
-{w:45,d:'Mon',t:'Run',x:'RUN 10 mi | Z3 | Final hard run — race pace',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'Last hard week. Taper starts next.'},{w:45,d:'Tue',t:'Swim',x:'SWIM 1900m | Z3 | Full race-distance simulation'},{w:45,d:'Wed',t:'Bike',x:'BIKE 50 mi | Z3 | Final long ride',str:'Maintenance 2–3×5 — Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},{w:45,d:'Thu',t:'Run',x:'RUN 6 mi | Z2'},{w:45,d:'Fri',t:'Rest',x:'REST'},{w:45,d:'Sat',t:'Brick',x:'BRICK: BIKE 40 mi Z3 → RUN 5 mi Z3 | Final race-pace brick'},{w:45,d:'Sun',t:'Rest',x:'REST'},
-{w:46,d:'Mon',t:'Run',x:'RUN 4 mi | Z2 | Easy shake-out',note:'🏁 RACE: Sat May 8, 2027. NO strength. NO plyos.'},{w:46,d:'Tue',t:'Swim',x:'SWIM 1000m | Z2 | Easy'},{w:46,d:'Wed',t:'Bike',x:'BIKE 20 mi | Z2 | Easy spin'},{w:46,d:'Thu',t:'Run',x:'RUN 3 mi | Z1 | Short & easy'},{w:46,d:'Fri',t:'Rest',x:'REST'},{w:46,d:'Sat',t:'Run',x:'RUN 3 mi | Z1 | Final shakeout — RACE DAY TOMORROW!'},{w:46,d:'Sun',t:'Rest',x:'REST'},
+{w:1,d:'Mon',t:'Run',x:'RUN 3 mi | Z2 | Easy & conversational',plyo:'3×10 ankle hops + 3×20 skips before run'},
+{w:1,d:'Tue',t:'Rest',x:'REST / Active Recovery'},
+{w:1,d:'Wed',t:'Bike',x:'BIKE 17 mi (~1h 00min) | Z2 | Easy spin, cadence 85-90rpm',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:1,d:'Thu',t:'Rest',x:'REST / Active Recovery'},
+{w:1,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Negative split'},
+{w:1,d:'Sat',t:'Bike',x:'BIKE 17 mi (~1h 00min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:1,d:'Sun',t:'Rest',x:'REST',note:'Plyo + run Mon. Strength Wed & Sat.'},
+{w:2,d:'Mon',t:'Run',x:'RUN 3 mi | Z2'},
+{w:2,d:'Tue',t:'Rest',x:'REST'},
+{w:2,d:'Wed',t:'Bike',x:'BIKE 18 mi (~1h 04min) | Z2 | Hold 85-90 rpm',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:2,d:'Thu',t:'Rest',x:'REST'},
+{w:2,d:'Fri',t:'Run',x:'RUN 3 mi | Z2'},
+{w:2,d:'Sat',t:'Bike',x:'BIKE 21 mi (~1h 14min) | Z2 | Easy aerobic'},
+{w:2,d:'Sun',t:'Rest',x:'REST'},
+{w:3,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},
+{w:3,d:'Tue',t:'Rest',x:'REST'},
+{w:3,d:'Wed',t:'Bike',x:'BIKE 22 mi (~1h 18min) | Z2 | Smooth pedal stroke',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:3,d:'Thu',t:'Rest',x:'REST'},
+{w:3,d:'Fri',t:'Run',x:'RUN 4 mi | Z2 | Last mile Z3'},
+{w:3,d:'Sat',t:'Bike',x:'BIKE 22 mi (~1h 18min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:3,d:'Sun',t:'Rest',x:'REST'},
+{w:4,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1 | Very easy',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:4,d:'Tue',t:'Rest',x:'REST'},
+{w:4,d:'Wed',t:'Recovery',x:'BIKE 14 mi (~49min) | Z1 | Easy spin'},
+{w:4,d:'Thu',t:'Rest',x:'REST'},
+{w:4,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},
+{w:4,d:'Sat',t:'Recovery',x:'BIKE 14 mi (~49min) | Z1'},
+{w:4,d:'Sun',t:'Rest',x:'REST'},
+{w:5,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},
+{w:5,d:'Tue',t:'Swim',x:'SWIM 600m | Z2 | Focus on breathing rhythm every 3 strokes'},
+{w:5,d:'Wed',t:'Bike',x:'BIKE 24 mi (~1h 25min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:5,d:'Thu',t:'Rest',x:'REST'},
+{w:5,d:'Fri',t:'Run',x:'RUN 4 mi | Z2'},
+{w:5,d:'Sat',t:'Bike',x:'BIKE 24 mi (~1h 25min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:5,d:'Sun',t:'Rest',x:'REST'},
+{w:6,d:'Mon',t:'Run',x:'RUN 4 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},
+{w:6,d:'Tue',t:'Swim',x:'SWIM 650m | Z2 | Practice bilateral breathing'},
+{w:6,d:'Wed',t:'Bike',x:'BIKE 21 mi (~1h 14min) | Z2 | Build to 90 min',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:6,d:'Thu',t:'Rest',x:'REST'},
+{w:6,d:'Fri',t:'Run',x:'RUN 5 mi | Z2/Z3 | 3×1 mi at Z3'},
+{w:6,d:'Sat',t:'Bike',x:'BIKE 21 mi (~1h 14min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:6,d:'Sun',t:'Rest',x:'REST'},
+{w:7,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run'},
+{w:7,d:'Tue',t:'Swim',x:'SWIM 700m | Z2 | Practice bilateral breathing + sighting'},
+{w:7,d:'Wed',t:'Bike',x:'BIKE 22 mi (~1h 18min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:7,d:'Thu',t:'Rest',x:'REST'},
+{w:7,d:'Fri',t:'Run',x:'RUN 5 mi | Z2 | Miles 3–5 at Z3'},
+{w:7,d:'Sat',t:'Bike',x:'BIKE 22 mi (~1h 18min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:7,d:'Sun',t:'Rest',x:'REST'},
+{w:8,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:8,d:'Tue',t:'Recovery',x:'SWIM 500m | Z1 | Easy — stay loose'},
+{w:8,d:'Wed',t:'Recovery',x:'BIKE 14 mi (~49min) | Z1 | Easy spin'},
+{w:8,d:'Thu',t:'Rest',x:'REST'},
+{w:8,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},
+{w:8,d:'Sat',t:'Recovery',x:'BIKE 14 mi (~49min) | Z1'},
+{w:8,d:'Sun',t:'Rest',x:'REST'},
+{w:9,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops + 3×20 skips before run',note:'End of Phase 1.'},
+{w:9,d:'Tue',t:'Swim',x:'SWIM 750m | Z2 | Build endurance'},
+{w:9,d:'Wed',t:'Bike',x:'BIKE 24 mi (~1h 25min) | Z2 | Longest ride yet',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:9,d:'Thu',t:'Rest',x:'REST'},
+{w:9,d:'Fri',t:'Run',x:'RUN 6 mi | Z2 | 4×1 mi at Z3'},
+{w:9,d:'Sat',t:'Bike',x:'BIKE 24 mi (~1h 25min) | Z2',str:'Stabilization 3×12 — Goblet Squat, Hip Thrust, Single-Leg RDL, Bent-Over Row, Rotator Cuff Circuit, Dead Bug, Calf Raises'},
+{w:9,d:'Sun',t:'Rest',x:'REST'},
+{w:10,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run',note:'Phase 2: Max strength begins.'},
+{w:10,d:'Tue',t:'Swim',x:'SWIM 800m | Z2 | 4x200m sets'},
+{w:10,d:'Wed',t:'Bike',x:'BIKE 24 mi (~1h 25min) | Z2 | Cadence drills',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:10,d:'Thu',t:'Rest',x:'REST'},
+{w:10,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},
+{w:10,d:'Sat',t:'Run',x:'RUN 10 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:10,d:'Sun',t:'Rest',x:'REST'},
+{w:11,d:'Mon',t:'Run',x:'RUN 5 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},
+{w:11,d:'Tue',t:'Swim',x:'SWIM 850m | Z2 | Build endurance'},
+{w:11,d:'Wed',t:'Bike',x:'BIKE 22 mi (~1h 18min) | Z2 | Hold 85–90 rpm',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:11,d:'Thu',t:'Rest',x:'REST'},
+{w:11,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},
+{w:11,d:'Sat',t:'Run',x:'RUN 11 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:11,d:'Sun',t:'Rest',x:'REST'},
+{w:12,d:'Mon',t:'Run',x:'RUN 6 mi | Z2/Z3 | Last 2 mi Z3',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},
+{w:12,d:'Tue',t:'Swim',x:'SWIM 900m | Z2 | 3x300m sets'},
+{w:12,d:'Wed',t:'Bike',x:'BIKE 24 mi (~1h 25min) | Z2 | 2×5 mi at Z3',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:12,d:'Thu',t:'Rest',x:'REST'},
+{w:12,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},
+{w:12,d:'Sat',t:'Run',x:'RUN 11 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:12,d:'Sun',t:'Rest',x:'REST'},
+{w:13,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:13,d:'Tue',t:'Recovery',x:'SWIM 700m | Z1 | Easy — stay loose'},
+{w:13,d:'Wed',t:'Recovery',x:'BIKE 16 mi (~56min) | Z1'},
+{w:13,d:'Thu',t:'Rest',x:'REST'},
+{w:13,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},
+{w:13,d:'Sat',t:'Recovery',x:'RUN 8 mi | Z1/Z2 | Cutback'},
+{w:13,d:'Sun',t:'Rest',x:'REST'},
+{w:14,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run',note:'★ First brick!'},
+{w:14,d:'Tue',t:'Swim',x:'SWIM 950m | Z2 | 2x400m + 150m'},
+{w:14,d:'Wed',t:'Bike',x:'BIKE 25 mi (~1h 28min) | Z2',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:14,d:'Thu',t:'Rest',x:'REST'},
+{w:14,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},
+{w:14,d:'Sat',t:'Brick',x:'BRICK: BIKE 20 mi (~1h 11min) Z2 → RUN 2 mi Z2 | First brick!',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:14,d:'Sun',t:'Rest',x:'REST'},
+{w:15,d:'Mon',t:'Run',x:'RUN 6 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},
+{w:15,d:'Tue',t:'Swim',x:'SWIM 1000m | Z2 | MILESTONE — 2x500m sets'},
+{w:15,d:'Wed',t:'Bike',x:'BIKE 26 mi (~1h 32min) | Z2 | 2×6 mi at Z3',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:15,d:'Thu',t:'Rest',x:'REST'},
+{w:15,d:'Fri',t:'Run',x:'RUN 5 mi | Z2'},
+{w:15,d:'Sat',t:'Run',x:'RUN 12 mi | Z2 | Long run',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:15,d:'Sun',t:'Rest',x:'REST'},
+{w:16,d:'Mon',t:'Run',x:'RUN 6 mi | Z2/Z3',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},
+{w:16,d:'Tue',t:'Swim',x:'SWIM 1050m | Z2 | Build endurance'},
+{w:16,d:'Wed',t:'Bike',x:'BIKE 28 mi (~1h 39min) | Z2/Z3 | Build last 8 mi to Z3',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:16,d:'Thu',t:'Rest',x:'REST'},
+{w:16,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},
+{w:16,d:'Sat',t:'Brick',x:'BRICK: BIKE 22 mi (~1h 18min) Z2 → RUN 3 mi Z2',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:16,d:'Sun',t:'Rest',x:'REST'},
+{w:17,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:17,d:'Tue',t:'Recovery',x:'SWIM 800m | Z1 | Easy — stay loose'},
+{w:17,d:'Wed',t:'Recovery',x:'BIKE 18 mi (~1h 04min) | Z1'},
+{w:17,d:'Thu',t:'Rest',x:'REST'},
+{w:17,d:'Fri',t:'Recovery',x:'RUN 3 mi | Z1'},
+{w:17,d:'Sat',t:'Recovery',x:'RUN 9 mi | Z1/Z2 | Cutback'},
+{w:17,d:'Sun',t:'Rest',x:'REST'},
+{w:18,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run'},
+{w:18,d:'Tue',t:'Swim',x:'SWIM 1100m | Z2 | 2x500m + 100m'},
+{w:18,d:'Wed',t:'Bike',x:'BIKE 30 mi (~1h 46min) | Z2 | Longest ride yet',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:18,d:'Thu',t:'Rest',x:'REST'},
+{w:18,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},
+{w:18,d:'Sat',t:'Brick',x:'BRICK: BIKE 24 mi (~1h 25min) Z2 → RUN 3 mi Z2',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:18,d:'Sun',t:'Rest',x:'REST'},
+{w:19,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 ankle hops, 3×8 jump squats (land soft), 3×10 bounding steps before run',note:'Last 4-day week.'},
+{w:19,d:'Tue',t:'Swim',x:'SWIM 1150m | Z2 | Build to continuous effort'},
+{w:19,d:'Wed',t:'Bike',x:'BIKE 32 mi (~1h 53min) | Z2 | Negative split',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:19,d:'Thu',t:'Rest',x:'REST'},
+{w:19,d:'Fri',t:'Run',x:'RUN 6 mi | Z2'},
+{w:19,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Longest long run so far',str:'Max Strength 4×6 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Lat Pulldown, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:19,d:'Sun',t:'Rest',x:'REST'},
+{w:20,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'★ Thu activates as 5th day.'},
+{w:20,d:'Tue',t:'Swim',x:'SWIM 1200m | Z2 | 3x400m sets'},
+{w:20,d:'Wed',t:'Bike',x:'BIKE 30 mi (~1h 46min) | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:20,d:'Thu',t:'Run',x:'RUN 5 mi | Z2 | Thu activates!',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:20,d:'Fri',t:'Rest',x:'REST'},
+{w:20,d:'Sat',t:'Run',x:'RUN 13 mi | Z2 | Long run'},
+{w:20,d:'Sun',t:'Rest',x:'REST'},
+{w:21,d:'Mon',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:21,d:'Tue',t:'Swim',x:'SWIM 1300m | Z2 | 2x600m sets'},
+{w:21,d:'Wed',t:'Bike',x:'BIKE 31 mi (~1h 49min) | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:21,d:'Thu',t:'Run',x:'RUN 5 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:21,d:'Fri',t:'Rest',x:'REST'},
+{w:21,d:'Sat',t:'Run',x:'RUN 14 mi | Z2 | Long run'},
+{w:21,d:'Sun',t:'Rest',x:'REST'},
+{w:22,d:'Mon',t:'Run',x:'RUN 7 mi | Z2/Z3 | Last 2 mi Z3',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:22,d:'Tue',t:'Swim',x:'SWIM 1400m | Z2 | 2x700m sets'},
+{w:22,d:'Wed',t:'Bike',x:'BIKE 32 mi (~1h 53min) | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:22,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:22,d:'Fri',t:'Rest',x:'REST'},
+{w:22,d:'Sat',t:'Brick',x:'BRICK: BIKE 25 mi (~1h 28min) Z2 → RUN 3 mi Z2'},
+{w:22,d:'Sun',t:'Rest',x:'REST'},
+{w:23,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:23,d:'Tue',t:'Recovery',x:'SWIM 1000m | Z1 | Easy — stay loose'},
+{w:23,d:'Wed',t:'Recovery',x:'BIKE 22 mi (~1h 18min) | Z1 | Cutback'},
+{w:23,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},
+{w:23,d:'Fri',t:'Rest',x:'REST'},
+{w:23,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},
+{w:23,d:'Sun',t:'Rest',x:'REST'},
+{w:24,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:24,d:'Tue',t:'Swim',x:'SWIM 1500m | Z2 | MILESTONE — race distance! 3x500m'},
+{w:24,d:'Wed',t:'Bike',x:'BIKE 34 mi (~2h 00min) | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:24,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:24,d:'Fri',t:'Rest',x:'REST'},
+{w:24,d:'Sat',t:'Run',x:'RUN 14 mi | Z2 | Long run'},
+{w:24,d:'Sun',t:'Rest',x:'REST'},
+{w:25,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:25,d:'Tue',t:'Swim',x:'SWIM 1600m | Z2 | 4x400m sets'},
+{w:25,d:'Wed',t:'Bike',x:'BIKE 35 mi (~2h 04min) | Z2 | 2×8 mi at Z3',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:25,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:25,d:'Fri',t:'Rest',x:'REST'},
+{w:25,d:'Sat',t:'Brick',x:'BRICK: BIKE 28 mi (~1h 39min) Z2 → RUN 3 mi Z2'},
+{w:25,d:'Sun',t:'Rest',x:'REST'},
+{w:26,d:'Mon',t:'Run',x:'RUN 8 mi | Z2/Z3',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'★ 15-mile long run milestone'},
+{w:26,d:'Tue',t:'Swim',x:'SWIM 1700m | Z2 | 3x500m + 200m'},
+{w:26,d:'Wed',t:'Bike',x:'BIKE 36 mi (~2h 07min) | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:26,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:26,d:'Fri',t:'Rest',x:'REST'},
+{w:26,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},
+{w:26,d:'Sun',t:'Rest',x:'REST'},
+{w:27,d:'Mon',t:'Recovery',x:'RUN 3 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:27,d:'Tue',t:'Recovery',x:'SWIM 1200m | Z1 | Easy — stay loose'},
+{w:27,d:'Wed',t:'Recovery',x:'BIKE 24 mi (~1h 25min) | Z1 | Cutback'},
+{w:27,d:'Thu',t:'Recovery',x:'RUN 3 mi | Z1'},
+{w:27,d:'Fri',t:'Rest',x:'REST'},
+{w:27,d:'Sat',t:'Recovery',x:'RUN 10 mi | Z1/Z2 | Cutback'},
+{w:27,d:'Sun',t:'Rest',x:'REST'},
+{w:28,d:'Mon',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'★ 1000m swim milestone'},
+{w:28,d:'Tue',t:'Swim',x:'SWIM 1800m | Z2 | 2x800m + 200m'},
+{w:28,d:'Wed',t:'Bike',x:'BIKE 38 mi (~2h 14min) | Z2 | Steady aerobic',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:28,d:'Thu',t:'Run',x:'RUN 6 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:28,d:'Fri',t:'Rest',x:'REST'},
+{w:28,d:'Sat',t:'Brick',x:'BRICK: BIKE 30 mi (~1h 46min) Z2 → RUN 4 mi Z2'},
+{w:28,d:'Sun',t:'Rest',x:'REST'},
+{w:29,d:'Mon',t:'Run',x:'RUN 9 mi | Z2',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:29,d:'Tue',t:'Swim',x:'SWIM 1900m | Z2 | Full race distance — 2x900m'},
+{w:29,d:'Wed',t:'Bike',x:'BIKE 40 mi (~2h 21min) | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:29,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:29,d:'Fri',t:'Rest',x:'REST'},
+{w:29,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run'},
+{w:29,d:'Sun',t:'Rest',x:'REST'},
+{w:30,d:'Mon',t:'Run',x:'RUN 9 mi | Z2 | Last 2 mi Z3',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run',note:'Last Full Tri Base week.'},
+{w:30,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2 | Beyond race distance'},
+{w:30,d:'Wed',t:'Bike',x:'BIKE 42 mi (~2h 28min) | Z2 | Negative split',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit'},
+{w:30,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',str:'Max Strength 4×5 — Barbell Squat, Romanian Deadlift, Bulgarian Split Squat, Pull-Up, DB Shoulder Press, Rotator Cuff Circuit',plyo:'3×10 split lunge jumps, 3×8 single-leg hops each leg, 3×20 high skips before run'},
+{w:30,d:'Fri',t:'Rest',x:'REST'},
+{w:30,d:'Sat',t:'Brick',x:'BRICK: BIKE 32 mi (~1h 53min) Z2 → RUN 4 mi Z2'},
+{w:30,d:'Sun',t:'Rest',x:'REST'},
+{w:31,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'Build: strength → maintenance.'},
+{w:31,d:'Tue',t:'Swim',x:'SWIM 2000m | Z2/Z3 | 4x500m at Z3'},
+{w:31,d:'Wed',t:'Bike',x:'BIKE 42 mi (~2h 28min) | Z2/Z3 | Last 10 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},
+{w:31,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},
+{w:31,d:'Fri',t:'Rest',x:'REST'},
+{w:31,d:'Sat',t:'Brick',x:'BRICK: BIKE 34 mi (~2h 00min) Z3 → RUN 4 mi Z2'},
+{w:31,d:'Sun',t:'Rest',x:'REST'},
+{w:32,d:'Mon',t:'Run',x:'RUN 9 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 16-mile long run milestone'},
+{w:32,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2 | MILESTONE — 2x1000m + 100m'},
+{w:32,d:'Wed',t:'Bike',x:'BIKE 44 mi (~2h 35min) | Z2 | Steady aerobic',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},
+{w:32,d:'Thu',t:'Run',x:'RUN 8 mi | Z2/Z3 | 3×1 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},
+{w:32,d:'Fri',t:'Rest',x:'REST'},
+{w:32,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Long run'},
+{w:32,d:'Sun',t:'Rest',x:'REST'},
+{w:33,d:'Mon',t:'Run',x:'RUN 9 mi | Z2/Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run',note:'★ 1500m swim — race distance!'},
+{w:33,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2 | Long continuous effort'},
+{w:33,d:'Wed',t:'Bike',x:'BIKE 45 mi (~2h 39min) | Z2/Z3 | 2×10 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},
+{w:33,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},
+{w:33,d:'Fri',t:'Rest',x:'REST'},
+{w:33,d:'Sat',t:'Brick',x:'BRICK: BIKE 36 mi (~2h 07min) Z3 → RUN 5 mi Z2'},
+{w:33,d:'Sun',t:'Rest',x:'REST'},
+{w:34,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:34,d:'Tue',t:'Recovery',x:'SWIM 1500m | Z1 | Easy — stay loose'},
+{w:34,d:'Wed',t:'Recovery',x:'BIKE 28 mi (~1h 39min) | Z1 | Cutback'},
+{w:34,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},
+{w:34,d:'Fri',t:'Rest',x:'REST'},
+{w:34,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},
+{w:34,d:'Sun',t:'Rest',x:'REST'},
+{w:35,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},
+{w:35,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2/Z3 | 4x500m Z3'},
+{w:35,d:'Wed',t:'Bike',x:'BIKE 46 mi (~2h 42min) | Z2/Z3 | Last 12 mi Z3',str:'Maintenance 3×5 — Barbell Squat, Romanian Deadlift, Bent-Over Row, Hip Thrust, Rotator Cuff Circuit'},
+{w:35,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3×12 split lunge jumps, 3×10 lateral hops, 3×8 depth step-offs, 3×20 skips before run'},
+{w:35,d:'Fri',t:'Rest',x:'REST'},
+{w:35,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Long run'},
+{w:35,d:'Sun',t:'Rest',x:'REST'},
+{w:36,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | Last 3 mi Z3',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:36,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2/Z3 | 4x500m at Z3 — race pace'},
+{w:36,d:'Wed',t:'Bike',x:'BIKE 48 mi (~2h 49min) | Z2/Z3 | Build last 12 mi to Z3',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:36,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:36,d:'Fri',t:'Swim',x:'SWIM 1500m | Z2 | Open water technique — sighting + drafting drills'},
+{w:36,d:'Sat',t:'Brick',x:'BRICK: BIKE 38 mi (~2h 14min) Z3 → RUN 5 mi Z2 | Race-pace effort'},
+{w:36,d:'Sun',t:'Rest',x:'REST'},
+{w:37,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:37,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2/Z3 | 2x1000m at Z3 + 100m easy'},
+{w:37,d:'Wed',t:'Bike',x:'BIKE 49 mi (~2h 53min) | Z3 | Tempo — sustained race effort',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:37,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:37,d:'Fri',t:'Swim',x:'SWIM 1500m | Z2/Z3 | 3x500m at Z3 — race pace sets'},
+{w:37,d:'Sat',t:'Run',x:'RUN 15 mi | Z2 | Long run',note:'★ Peak begins. Trust your fitness.'},
+{w:37,d:'Sun',t:'Rest',x:'REST'},
+{w:38,d:'Mon',t:'Recovery',x:'RUN 4 mi | Z1 | Recovery week',note:'⟳ Recovery week — NO strength, NO plyos.'},
+{w:38,d:'Tue',t:'Recovery',x:'SWIM 1600m | Z1 | Easy — stay loose'},
+{w:38,d:'Wed',t:'Recovery',x:'BIKE 30 mi (~1h 46min) | Z1 | Cutback spin'},
+{w:38,d:'Thu',t:'Recovery',x:'RUN 4 mi | Z1'},
+{w:38,d:'Fri',t:'Rest',x:'REST / Active Recovery'},
+{w:38,d:'Sat',t:'Recovery',x:'RUN 11 mi | Z1/Z2 | Cutback'},
+{w:38,d:'Sun',t:'Rest',x:'REST'},
+{w:39,d:'Mon',t:'Run',x:'RUN 10 mi | Z2/Z3 | 4x1 mi Z4 threshold',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:39,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2/Z3 | Race simulation — 4x400m Z3'},
+{w:39,d:'Wed',t:'Bike',x:'BIKE 50 mi (~2h 56min) | Z2/Z3 | Longest ride — controlled',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:39,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:39,d:'Fri',t:'Swim',x:'SWIM 1500m | Z3 | Race simulation — continuous effort'},
+{w:39,d:'Sat',t:'Brick',x:'BRICK: BIKE 42 mi (~2h 28min) Z3 → RUN 5 mi Z2 | Race-pace brick'},
+{w:39,d:'Sun',t:'Rest',x:'REST'},
+{w:40,d:'Mon',t:'Run',x:'RUN 11 mi | Z2/Z3',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:40,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2 | 2x900m + 300m cool-down'},
+{w:40,d:'Wed',t:'Bike',x:'BIKE 52 mi (~3h 04min) | Z2/Z3 | Build confidence',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:40,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:40,d:'Fri',t:'Swim',x:'SWIM 1500m | Z2 | 3x500m — feel the water'},
+{w:40,d:'Sat',t:'Run',x:'RUN 16 mi | Z2 | Final peak long run — longest run of plan',note:'★ 16-mile long run milestone'},
+{w:40,d:'Sun',t:'Rest',x:'REST'},
+{w:41,d:'Mon',t:'Run',x:'RUN 11 mi | Z2/Z3',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:41,d:'Tue',t:'Swim',x:'SWIM 2100m | Z2/Z3 | 4x400m race pace sets'},
+{w:41,d:'Wed',t:'Bike',x:'BIKE 54 mi (~3h 11min) | Z2/Z3 | Negative split',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:41,d:'Thu',t:'Run',x:'RUN 8 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:41,d:'Fri',t:'Swim',x:'SWIM 1600m | Z2/Z3 | 4x400m at Z3 — race pace'},
+{w:41,d:'Sat',t:'Brick',x:'BRICK: BIKE 45 mi (~2h 39min) Z3 → RUN 6 mi Z3 | Key race-sim'},
+{w:41,d:'Sun',t:'Rest',x:'REST'},
+{w:42,d:'Mon',t:'Run',x:'RUN 11 mi | Z3 | Race-pace effort',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run',note:'★ Hardest week. Trust what you built.'},
+{w:42,d:'Tue',t:'Swim',x:'SWIM 2100m | Z3 | Full race simulation'},
+{w:42,d:'Wed',t:'Bike',x:'BIKE 55 mi (~3h 14min) | Z3 | Longest ride of the plan',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:42,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:42,d:'Fri',t:'Swim',x:'SWIM 1600m | Z3 | Final race simulation — race pace continuous'},
+{w:42,d:'Sat',t:'Brick',x:'BRICK: BIKE 46 mi (~2h 42min) Z3 → RUN 6 mi Z3 | Full race-sim'},
+{w:42,d:'Sun',t:'Rest',x:'REST'},
+{w:43,d:'Mon',t:'Run',x:'RUN 11 mi | Z3 | Race-pace effort',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run',note:'★ Final peak week. Last hard effort before taper.'},
+{w:43,d:'Tue',t:'Swim',x:'SWIM 2100m | Z3 | Race simulation — sustained effort'},
+{w:43,d:'Wed',t:'Bike',x:'BIKE 55 mi (~3h 14min) | Z3 | Race effort — final long ride',str:'Maintenance 2-3x5 - Barbell Squat, Romanian Deadlift, Pull-Up, Rotator Cuff Circuit'},
+{w:43,d:'Thu',t:'Run',x:'RUN 7 mi | Z2',plyo:'3x12 split lunge jumps, 3x10 lateral hops, 3x8 depth step-offs, 3x20 skips before run'},
+{w:43,d:'Fri',t:'Swim',x:'SWIM 1600m | Z3 | Final peak swim — race pace'},
+{w:43,d:'Sat',t:'Brick',x:'BRICK: BIKE 46 mi (~2h 42min) Z3 → RUN 6 mi Z3 | Final race-sim — peak complete'},
+{w:43,d:'Sun',t:'Rest',x:'REST'},
+{w:44,d:'Mon',t:'Run',x:'RUN 6 mi | Z2 | Shake-out',note:'🏁 TAPER STARTS Apr 19. Volume drops. Trust your training.'},
+{w:44,d:'Tue',t:'Swim',x:'SWIM 1200m | Z2 | Easy — maintain feel'},
+{w:44,d:'Wed',t:'Bike',x:'BIKE 25 mi (~1h 28min) | Z2 | Easy spin'},
+{w:44,d:'Thu',t:'Run',x:'RUN 4 mi | Z2 | Short and easy'},
+{w:44,d:'Fri',t:'Rest',x:'REST / Active Recovery'},
+{w:44,d:'Sat',t:'Brick',x:'BRICK: BIKE 20 mi (~1h 11min) Z2 → RUN 2 mi Z2 | Stay fresh'},
+{w:44,d:'Sun',t:'Rest',x:'REST'},
+{w:45,d:'Mon',t:'Run',x:'RUN 4 mi | Z2 | Easy shake-out',note:'🏁 RACE WEEK — May 8, 2027. NO strength. NO plyos. Fresh legs only.'},
+{w:45,d:'Tue',t:'Swim',x:'SWIM 800m | Z2 | Easy — feel the water'},
+{w:45,d:'Wed',t:'Bike',x:'BIKE 15 mi (~53min) | Z2 | Easy spin — legs loose'},
+{w:45,d:'Thu',t:'Run',x:'RUN 3 mi | Z1 | Stay fresh'},
+{w:45,d:'Fri',t:'Rest',x:'REST / Active Recovery'},
+{w:45,d:'Sat',t:'Run',x:'RUN 3 mi | Z1 | Final shakeout — one week to race day'},
+{w:45,d:'Sun',t:'Rest',x:'REST'},
+{w:46,d:'Mon',t:'Run',x:'RUN 3 mi | Z1 | Easy shake-out — race week',note:'🏁 RACE WEEK — May 8, 2027. No intensity. Fresh legs only.'},
+{w:46,d:'Tue',t:'Swim',x:'SWIM 600m | Z1 | Easy — feel the water'},
+{w:46,d:'Wed',t:'Bike',x:'BIKE 10 mi (~35min) | Z1 | Easy spin — just move the legs'},
+{w:46,d:'Thu',t:'Run',x:'RUN 2 mi | Z1 | Final shakeout — keep it very easy'},
+{w:46,d:'Fri',t:'Rest',x:'REST — pack your gear, hydrate, sleep early'},
+{w:46,d:'Sat',t:'Brick',x:'🏁 RACE DAY — 70.3 Half Ironman | Swim 1.2 mi → Bike 56 mi → Run 13.1 mi'},
+{w:46,d:'Sun',t:'Rest',x:'REST — you did it. Recover and celebrate.'}
 ];
+
+
 
 const PHASES=[
   {num:1,name:'Run Base + Bike',s:1,e:9},
   {num:2,name:'Run + Bike',s:10,e:19},
   {num:3,name:'Full Tri Base',s:20,e:30},
-  {num:4,name:'Build',s:31,e:40},
-  {num:5,name:'Peak',s:41,e:45},
-  {num:6,name:'Taper',s:46,e:46},
+  {num:4,name:'Build',s:31,e:35},
+  {num:5,name:'Peak',s:36,e:43},
+  {num:6,name:'Taper',s:44,e:45},
+  {num:7,name:'Race Week',s:46,e:46},
 ];
 const EMOJI={Run:'🏃',Bike:'🚴',Swim:'🏊',Brick:'⚡',Rest:'😴',Recovery:'💙'};
 
@@ -306,7 +585,7 @@ let syncTimer=null;
 let lastSyncTime=null;
 
 function getPhase(wk){return PHASES.find(p=>wk>=p.s&&wk<=p.e)||PHASES[0];}
-function getWO(wk,day){return PLAN.find(p=>p.w===wk&&p.d===day)||{t:'Rest',x:'REST'};}
+function getWO(wk,day){return PLAN.find(function(p){return p.w===wk&&p.d===day;})||{t:'Rest',x:'REST'};}
 
 function todayInfo(){
   const t=new Date();t.setHours(0,0,0,0);
@@ -373,7 +652,7 @@ async function pullFromCloud(){
         if(!d.record[a])return;
         Object.keys(d.record[a]).forEach(k=>{
           const remote=d.record[a][k];
-          const local=logged[a]?.[k];
+          const local=(logged[a]?logged[a][k]:null);
           if(!local||(remote.ts&&local.ts&&remote.ts>local.ts)){
             if(!logged[a])logged[a]={};
             logged[a][k]=remote;
@@ -411,8 +690,8 @@ function loadLocal(){
   if(!logged.chase)logged.chase={};
 }
 
-function isLogged(ath,wk,day){return!!logged[ath]?.[`${wk}_${day}`];}
-function getLog(ath,wk,day){return logged[ath]?.[`${wk}_${day}`]||null;}
+function isLogged(ath,wk,day){return !!(logged[ath]&&logged[ath][wk+'_'+day]);}
+function getLog(ath,wk,day){return (logged[ath]&&logged[ath][wk+'_'+day])||null;}
 
 // ── MODAL ──────────────────────────────────────────────────────────────────
 function openLogModal(ath,wk,day){
@@ -421,10 +700,10 @@ function openLogModal(ath,wk,day){
   const existing=getLog(ath,wk,day);
   document.getElementById('modal-title').textContent=`${ATH_LABEL[ath]} — ${day} Wk${wk}`;
   document.getElementById('modal-sub').textContent=wo.x;
-  document.getElementById('inp-distance').value=existing?.distance||'';
-  document.getElementById('inp-pace').value=existing?.pace||'';
-  document.getElementById('inp-hr').value=existing?.hr||'';
-  document.getElementById('inp-notes').value=existing?.notes||'';
+  document.getElementById('inp-distance').value=(existing?existing.distance:'')||'';
+  document.getElementById('inp-pace').value=(existing?existing.pace:'')||'';
+  document.getElementById('inp-hr').value=(existing?existing.hr:'')||'';
+  document.getElementById('inp-notes').value=(existing?existing.notes:'')||'';
   const btn=document.getElementById('modal-submit');
   btn.className=`modal-btn submit ${ath}`;
   document.getElementById('modal-overlay').classList.remove('hidden');
@@ -492,9 +771,9 @@ function render(){
 
 // ── TODAY ──────────────────────────────────────────────────────────────────
 function renderToday(){
-  const wo=getWO(todayWk,todayDay);
+  var curAth=(athlete==='both'?'nicholas':athlete);var wo=getWO(todayWk,todayDay);
   const phase=getPhase(todayWk);
-  const wkNote=PLAN.find(p=>p.w===todayWk&&p.note)?.note||'';
+  const wkNoteObj=PLAN.find(function(p){return p.w===todayWk&&p.note;});const wkNote=wkNoteObj?wkNoteObj.note:'';
   const showBoth=athlete==='both';
   const athletes=showBoth?['nicholas','chase']:[athlete];
   let extras='';
@@ -508,7 +787,7 @@ function renderToday(){
         const logData=getLog(a,todayWk,todayDay);
         const cls=lg?`${a}-on`:'off';
         const label=showBoth?`<span class="btn-name">${ATH_LABEL[a]}</span>`:'';
-        const dist=lg&&logData?.distance?`<span style="font-size:9px;opacity:.7">${logData.distance}</span>`:'';
+        const dist=lg&&logData&&logData.distance?'<span style="font-size:9px;opacity:.7">'+logData.distance+'</span>':'';
         return`<button class="log-btn ${cls}" ${showBoth?'':'style="width:100%"'} onclick="openLogModal('${a}',${todayWk},'${todayDay}')">
           ${label}<span>${lg?'✓ Logged':'Log workout'}</span>${dist}
         </button>`;
@@ -562,17 +841,18 @@ function renderWeek(){
   const ws=new Date(PLAN_START);ws.setDate(ws.getDate()+(wk-1)*7);
   const we=new Date(ws);we.setDate(we.getDate()+6);
   const fmt=d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  const showBoth=athlete==='both';
+  const athletes=showBoth?['nicholas','chase']:[athlete];
   let totalMi=0,swimM=0;
   const rows=DAYS.map(d=>{
-    const wo=getWO(wk,d);
+    var wo=getWO(wk,d);var wo_c=showBoth?getWO(wk,d):null;
     const m=wo.x.match(/(\d+(?:\.\d+)?)\s*mi/);if(m)totalMi+=parseFloat(m[1]);
     const sm=wo.x.match(/(\d+)m\b/);if(sm&&wo.t==='Swim')swimM+=parseInt(sm[1]);
     return{d,wo};
   });
-  const showBoth=athlete==='both';
-  const athletes=showBoth?['nicholas','chase']:[athlete];
   const active=rows.filter(r=>r.wo.t!=='Rest').length;
-  const wkNote=PLAN.find(p=>p.w===wk&&p.note)?.note||'';
+  const wkNoteObj=PLAN.find(function(p){return p.w===wk&&p.note;});
+  const wkNote=wkNoteObj?wkNoteObj.note:'';
   const isThisWk=wk===todayWk;
   const doneCounts=athletes.map(a=>rows.filter(r=>isLogged(a,wk,r.d)).length);
   document.getElementById('tab-week').innerHTML=`
@@ -600,7 +880,7 @@ function renderWeek(){
           ${athletes.map(a=>{
             const lg=isLogged(a,wk,d);
             const logData=getLog(a,wk,d);
-            const dist=lg&&logData?.distance?` ${logData.distance}`:'';
+            const dist=lg&&logData&&logData.distance?' '+logData.distance:'';
             return`<button class="wlog ${lg?a+'-on':''}" onclick="openLogModal('${a}',${wk},'${d}')" title="${ATH_LABEL[a]}">
               ${showBoth?(a==='nicholas'?'N':'C')+' ':''}${lg?'✓':'+'} ${dist}
             </button>`;
