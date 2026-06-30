@@ -116,6 +116,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .form-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block;}
 .form-input{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:10px;padding:11px 13px;font-size:15px;color:var(--text);-webkit-appearance:none;outline:none;}
 .form-input:focus{border-color:var(--accent);}
+select.form-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234FC3F7' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;}
 .modal-btn{padding:13px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;-webkit-appearance:none;}
@@ -197,6 +198,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="modal">
     <div class="modal-title" id="modal-title"></div>
     <div class="modal-sub" id="modal-sub"></div>
+    <div class="form-row">
+      <label class="form-label">Workout type</label>
+      <select class="form-input" id="inp-type">
+        <option value="Run">🏃 Run</option>
+        <option value="Bike">🚴 Bike</option>
+        <option value="Swim">🏊 Swim</option>
+        <option value="Brick">⚡ Brick</option>
+        <option value="Recovery">💙 Recovery</option>
+        <option value="Rest">😴 Rest</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">What you did</label>
+      <input class="form-input" id="inp-workout" type="text" placeholder="e.g. RUN 6 mi | Z2">
+    </div>
     <div class="form-row">
       <label class="form-label">Distance covered</label>
       <input class="form-input" id="inp-distance" type="text" placeholder="e.g. 5.2 mi or 800m">
@@ -699,7 +715,9 @@ function openLogModal(ath,wk,day){
   pendingLog={ath,wk,day,wo};
   const existing=getLog(ath,wk,day);
   document.getElementById('modal-title').textContent=`${ATH_LABEL[ath]} — ${day} Wk${wk}`;
-  document.getElementById('modal-sub').textContent=wo.x;
+  document.getElementById('modal-sub').textContent='Planned: '+wo.x;
+  document.getElementById('inp-type').value=(existing&&existing.type)?existing.type:wo.t;
+  document.getElementById('inp-workout').value=(existing&&existing.workout)?existing.workout:wo.x;
   document.getElementById('inp-distance').value=(existing?existing.distance:'')||'';
   document.getElementById('inp-pace').value=(existing?existing.pace:'')||'';
   document.getElementById('inp-hr').value=(existing?existing.hr:'')||'';
@@ -715,12 +733,14 @@ function closeModalOutside(e){if(e.target===document.getElementById('modal-overl
 async function submitLog(){
   if(!pendingLog)return;
   const{ath,wk,day}=pendingLog;
-  const dist=document.getElementById('inp-distance').value.trim();
-  const pace=document.getElementById('inp-pace').value.trim();
-  const hr=document.getElementById('inp-hr').value.trim();
-  const notes=document.getElementById('inp-notes').value.trim();
+  var type=document.getElementById('inp-type').value;
+  var workout=document.getElementById('inp-workout').value.trim();
+  var dist=document.getElementById('inp-distance').value.trim();
+  var pace=document.getElementById('inp-pace').value.trim();
+  var hr=document.getElementById('inp-hr').value.trim();
+  var notes=document.getElementById('inp-notes').value.trim();
   if(!logged[ath])logged[ath]={};
-  logged[ath][`${wk}_${day}`]={distance:dist,pace,hr,notes,ts:Date.now()};
+  logged[ath][wk+'_'+day]={type:type,workout:workout,distance:dist,pace:pace,hr:hr,notes:notes,ts:Date.now()};
   saveLocal();
   closeModal();
   render();
@@ -789,7 +809,7 @@ function renderToday(){
         const label=showBoth?`<span class="btn-name">${ATH_LABEL[a]}</span>`:'';
         const dist=lg&&logData&&logData.distance?'<span style="font-size:9px;opacity:.7">'+logData.distance+'</span>':'';
         return`<button class="log-btn ${cls}" ${showBoth?'':'style="width:100%"'} onclick="openLogModal('${a}',${todayWk},'${todayDay}')">
-          ${label}<span>${lg?'✓ Logged':'Log workout'}</span>${dist}
+          ${label}<span>${lg?'✓ Logged':(wo.t==='Rest'?'Log a workout':'Log workout')}</span>${dist}
         </button>`;
       }).join('')}
     </div>`;
@@ -798,11 +818,12 @@ function renderToday(){
       const logData=getLog(athlete,todayWk,todayDay);
       if(logData){
         const bits=[];
-        if(logData.distance)bits.push(`📍 ${logData.distance}`);
-        if(logData.pace)bits.push(`⚡ ${logData.pace}`);
-        if(logData.hr)bits.push(`❤️ ${logData.hr} bpm`);
-        if(logData.notes)bits.push(`💬 ${logData.notes}`);
-        if(bits.length)logSection+=`<div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.8;padding:8px 10px;background:var(--surface2);border-radius:8px;">${bits.join('<br>')}</div>`;
+        if(logData.workout&&logData.workout!==wo.x)bits.push('✏️ '+logData.workout);
+        if(logData.distance)bits.push('📍 '+logData.distance);
+        if(logData.pace)bits.push('⚡ '+logData.pace);
+        if(logData.hr)bits.push('❤️ '+logData.hr+' bpm');
+        if(logData.notes)bits.push('💬 '+logData.notes);
+        if(bits.length)logSection+='<div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.8;padding:8px 10px;background:var(--surface2);border-radius:8px;">'+bits.join('<br>')+'</div>';
       }
     }
   } else {
@@ -876,7 +897,7 @@ function renderWeek(){
         let sub='';
         if(wo.plyo)sub+=`<div style="font-size:10px;color:#FF8A65;margin-top:2px;">🦘 ${wo.plyo}</div>`;
         if(wo.str)sub+=`<div style="font-size:10px;color:#FFD54F;margin-top:2px;">🏋️ ${wo.str}</div>`;
-        const logBtns=wo.t!=='Rest'?`<div class="wlog-pair">
+        const logBtns=`<div class="wlog-pair">
           ${athletes.map(a=>{
             const lg=isLogged(a,wk,d);
             const logData=getLog(a,wk,d);
@@ -885,7 +906,7 @@ function renderWeek(){
               ${showBoth?(a==='nicholas'?'N':'C')+' ':''}${lg?'✓':'+'} ${dist}
             </button>`;
           }).join('')}
-        </div>`:'';
+        </div>`;
         return`<div class="wrow${isToday?' today-row':''}">
           <span class="wday">${d}</span>
           <span class="wicon">${EMOJI[wo.t]||'😴'}</span>
@@ -908,21 +929,30 @@ function parseMiles(str){
 }
 
 function getMileageStats(ath,weekRange){
-  let run=0,bike=0,swim=0,count=0;
-  const[wS,wE]=weekRange||[1,46];
-  PLAN.forEach(p=>{
-    if(p.w<wS||p.w>wE)return;
-    const logData=getLog(ath,p.w,p.d);
+  var run=0,bike=0,swim=0,count=0;
+  var wS=(weekRange||[1,46])[0],wE=(weekRange||[1,46])[1];
+  var athLogged=logged[ath]||{};
+  Object.keys(athLogged).forEach(function(key){
+    var parts=key.split('_');
+    var wk=parseInt(parts[0]),day=parts[1];
+    if(wk<wS||wk>wE)return;
+    var logData=athLogged[key];
     if(!logData)return;
     count++;
-    const mi=parseMiles(logData.distance);
-    if(p.t==='Run'||p.t==='Recovery')run+=mi;
-    else if(p.t==='Bike')bike+=mi;
-    else if(p.t==='Swim')swim+=mi;
-    else if(p.t==='Brick'){
-      const bm=p.x.match(/BIKE\s+([\d.]+)\s*mi.*?RUN\s+([\d.]+)\s*mi/i);
-      if(bm&&!mi){bike+=parseFloat(bm[1]);run+=parseFloat(bm[2]);}
-      else if(mi)bike+=mi;
+    var plannedWO=getWO(wk,day);
+    var useType=logData.type||plannedWO.t;
+    var mi=parseMiles(logData.distance);
+    if(!mi&&logData.workout)mi=parseMiles(logData.workout);
+    if(useType==='Run'||useType==='Recovery')run+=mi;
+    else if(useType==='Bike')bike+=mi;
+    else if(useType==='Swim')swim+=mi;
+    else if(useType==='Brick'){
+      var brkText=logData.workout||plannedWO.x;
+      var bm=brkText.match(/BIKE\s+([\d.]+)\s*mi/i);
+      var rm=brkText.match(/RUN\s+([\d.]+)\s*mi/i);
+      if(bm)bike+=parseFloat(bm[1]);
+      if(rm)run+=parseFloat(rm[1]);
+      if(!bm&&!rm&&mi)bike+=mi;
     }
   });
   return{run,bike,swim,count};
