@@ -912,7 +912,7 @@ function renderWeek(){
             const logData=getLog(a,wk,d);
             const dist=lg&&logData&&logData.distance?' '+logData.distance:'';
             return`<button class="wlog ${lg?a+'-on':''}" onclick="openLogModal('${a}',${wk},'${d}')" title="${ATH_LABEL[a]}">
-              ${showBoth?(a==='nicholas'?'N':'C')+' ':''}${lg?'✓':'+'} ${dist}
+              ${showBoth?(a==='nicholas'?'N':a==='chase'?'C':'A')+' ':''}${lg?'✓':'+'} ${dist}
             </button>`;
           }).join('')}
         </div>`;
